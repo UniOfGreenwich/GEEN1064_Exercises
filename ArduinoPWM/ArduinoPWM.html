@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Arduino and Pulse Width Modulation - ADW Exercises</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../Arduino4BitBinaryCouter/Arduino4BitBinaryCouter.html"><strong aria-hidden="true">1.</strong> Arduino 4-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html"><strong aria-hidden="true">2.</strong> Arduino 8-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html" class="active"><strong aria-hidden="true">3.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html"><strong aria-hidden="true">4.</strong> Seven Segmented Diplay</a></li><li class="chapter-item expanded "><a href="../MotorController/MotorController.html"><strong aria-hidden="true">5.</strong> Motor Controller With Arduino</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">ADW Exercises</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/cccu-uk/ADW-Exercises/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/cccu-uk/ADW-Exercises/edit/master/content/ArduinoPWM/ArduinoPWM.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>This lab will introduce you to Pulse Width Modulation (PWM) using the Arduino. </p>
+<blockquote>
+<p>The primary tool for this project will be TinkerCad -&gt; https://www.tinkercad.com</p>
+</blockquote>
+<p>This project follows on from the lecture  <strong>Analogue Write with Arduino</strong> and is designed to put into practice the theory. You will control the brightness of an LED using PWM pins on the Arudino Uno by using the <code>analogWrite()</code> function and view the voltage and PWM value in the serial monitor using the <code>Serial.print()</code> and <code>Serial.println()</code> functions. </p>
+<h2 id="setting-up-the-circuit"><a class="header" href="#setting-up-the-circuit">Setting up the Circuit</a></h2>
+<p>Once loaded login to TinkerCad and then click on <strong>Circuits</strong> &gt; <strong>Create new Circuit</strong>.</p>
+<p>Change the circuit name, located top-left hand side of the screen to <code>PWM_ LED</code>, see image below.</p>
+<div align=center>
+<p><img src="./figures/step1.png" alt="" /></p>
+</div>
+<p>Next you need to add an Arduino Uno and a breadboard that need to be connected together from the 5V and GND pins of the Arduino to the power and ground rails of the breadboard. </p>
+<p>This can be achieved by either selecting the Arduino Uno and the breadboard from <strong>Components</strong> &gt; <strong>Basic</strong> components or by changing <strong>Components</strong> &gt; <strong>Basic</strong> to <strong>Components</strong> &gt; <strong>Starter</strong> and choosing Arduino Uno and the Breadboard starter. Please refer to image below.</p>
+<div align=center>
+<p><img src="../MotorController/figures/step3-1.png" alt="" /></p>
+</div>
+<p>If you have chosen the Arduino and breadboard template from the the <strong>Components</strong> &gt; <strong>Starter</strong> then these two components are already connected with a corresponding red 5V line and GND line.</p>
+<ul>
+<li>1 x LED, any colour</li>
+<li>1 x Potentiometer, set at \(10k\Omega\) or \(10000\Omega\)</li>
+<li>1 x resistor, set at \(0.22k\Omega\) or \(220\Omega\)</li>
+</ul>
+<p>Placing components (refer to the image below the steps):</p>
+<ol>
+<li>Place the LED so that the <strong>cathode</strong> and <strong>anode</strong> is in row <strong>18</strong> and <strong>19</strong> column <strong>e</strong> respectively.</li>
+<li>Place the resistor's <strong>terminal 2</strong> in row<strong>18</strong> column<strong>b</strong> and <strong>terminal 1</strong> in the GND rail</li>
+<li>connect a wire from row <strong>19</strong> column <strong>d</strong> to the PWM pin \textasciitilde6 in the Arduino Uno</li>
+<li>Place the potentiometer so that <strong>Terminal 1</strong>, <strong>Wiper</strong> and <strong>Terminal 2</strong> are in row<strong>26</strong>,<strong>27</strong> and<strong>28</strong> column <strong>e</strong> respectively.</li>
+<li>Wire up the potentiometer so that terminal <strong>1</strong> and <strong>2</strong> are in GND and 5V line of the breadboard. then take the Wiper to <strong>A0</strong> of Arduino Uno. </li>
+</ol>
+<p><em>Note the wires are placed in row <strong>26</strong>, <strong>28</strong> and <strong>27</strong> column <strong>d</strong> respectively.</em></p>
+<div align=center>
+<p><img src="figures/step2.png" alt="" /></p>
+</div>
+<h2 id="programming-the-circuit"><a class="header" href="#programming-the-circuit">Programming the Circuit</a></h2>
+<pre><code class="language-C++">void setup()
+{
+
+}
+
+void loop()
+{
+
+}
+</code></pre>
+<p>Now you are ready to set up all the Sketch up as follows:</p>
+<pre><code class="language-C++">int ledPin = 6;      // LED connected to digital pin 6
+int analogPin = A0;   // potentiometer connected to analog pin A0
+int val = 0;         // variable to store the read value
+
+void setup() {
+  pinMode(ledPin, OUTPUT);  // sets the pin as output
+}
+
+void loop() {
+   val = analogRead(analogPin);  // read the input pin
+   analogWrite(ledPin, val / 4); 
+}
+
+</code></pre>
+<blockquote>
+<p>TODO</p>
+<ul>
+<li>
+<p>Can lines 1 to 3 be refactored so that the variables are declared and initialised on 1 line? Refactor the code to test your answer.</p>
+</li>
+<li>
+<p>Looking inside the <code>void setup()</code> only the <code>ledPin</code> has had its mode changed to <code>OUTPUT</code>. Do we need to need to specify the <code>pinMode</code> for the variable <code>analogPin</code>? Test your theory by adapting the code.</p>
+</li>
+<li>
+<p>What is the purpose of the mathematical operation in line 11? Recall what <code>analogRead</code> returns and how <code>analogWrite</code> operates. Add comment to the the line 11 to briefly describe the code.</p>
+</li>
+<li>
+<p>Describe the relationship between the LED and the resistor based on your observation of your circuit.</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="further-programming"><a class="header" href="#further-programming">Further Programming</a></h2>
+<p>In order to see what is happening numerically with the circuit you will need to send the data to the serial monitor: </p>
+<ol>
+<li>Create a new variable called <code>PWM</code> as an interger data type</li>
+<li>Adjust the code so that <code>void setup()</code> includes the command <code>Serial.begin(9600);</code></li>
+<li>Make a new line after the <code>val = analogRead</code> in <code>void loop()</code> and write <code>PWM = val \ 4;</code></li>
+<li>Next replace <code>analogWrite(ledPin, val \ 4);</code> with <code>analogWrite(ledPin, PWM);</code></li>
+<li>Then finally, modify the code inside the <code>void loop()</code>  to produce an output similar to below with a delay of 500<em>ms</em>.</li>
+</ol>
+<div align=center>
+<p><img src="./figures/step4.png" alt="" /></p>
+</div>
+<p>Now that you have the PWM outputting to the Serial monitor. </p>
+<blockquote>
+<p>QUESTIONS:</p>
+<ul>
+<li>What is the voltage when PWM is 0, 51, 102, 153, 204 and 255? Use the the calculation:</li>
+</ul>
+<p>\[ V = \frac{PWM}{51}\]</p>
+<ul>
+<li>Use a multimeter to measure the voltage out of the pin ~ when the PWM is 51, 102, 153, 204 and 255, why is the multimeter value different to your calculations?</li>
+</ul>
+</blockquote>
+<p>Now adjust the code to output the calculated voltage to the Serial Monitor:</p>
+<ul>
+<li>Add <code>float voltage = 0;</code> to your list of variables at the top of the sketch.</li>
+<li>After the <code>PWM = val /4;</code> add <code>voltage = PWM / 51.0;</code> to a new line</li>
+<li>Output the voltage to the Serial monitor.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
