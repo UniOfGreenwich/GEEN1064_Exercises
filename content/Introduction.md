@@ -7,7 +7,7 @@ This mdBook will grow over the duration of this module with new labs/workshops a
 <td>
 
 The mdBook accessed outside of blackboard and is mobile and tablet friendly. :
-- [https://cccu-uk.github.io/ADW-Exercises](https://cccu-uk.github.io/ADW-Exercises)
+- [https://teachingmaterial.github.io/GEEN1064_Exercises](https://teachingmaterial.github.io/GEEN1064_Exercises/)
 - Or scan the QR code on the right:
 </td>
 <td>
