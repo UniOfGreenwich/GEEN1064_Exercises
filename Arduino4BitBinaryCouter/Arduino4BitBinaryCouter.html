@@ -226,7 +226,7 @@
 <ul>
 <li>4 x LED, any colour</li>
 <li>4 x resistor, set at \(0.22k\Omega\) or \(220\Omega\)</li>
-<li>4 x resistors, set at \(10k\Omega\) or \(10000\Omega\)</li>
+<li>4 x resistors, set at \(1k\Omega\) or \(1000\Omega\)</li>
 <li>1 x DIP Switch SPST x 4  <em>use the search bar</em></li>
 </ul>
 <p>Placing components (refer to the image after the steps below):</p>
@@ -235,7 +235,7 @@
 <li>. Place the resistors inline with the <strong>Cathode</strong> of each LED so that <strong>terminal 2</strong> is in column <strong>b</strong> and <strong>terminal 1</strong> in the GND rail.</li>
 <li>connect a wire from inline with each <strong>Anode</strong> of LED, and connect from left to right of the breadboard, to <strong>Pins 5 4 3 2</strong> in the Arduino Uno.</li>
 <li>Place the `DIP Switch SPST x 4' so that it bridges the breadboard in a horizontal position so that where number 1 is displayed the pins are on row <strong>12</strong> column <strong>e</strong>. Therefore the <strong>O</strong> of <strong>On</strong> is in row <strong>12</strong> column <strong>f</strong>.</li>
-<li>Using the 4 resistors, set at \(10k\Omega\) or \(10000\Omega\), place inline with the <strong>1 2 3 4</strong> of the `DIP Switch SPST x 4' so that <strong>terminal 1</strong> of each resistor is in the GND rail and <strong>terminal 2</strong> is in column <strong>d</strong> </li>
+<li>Using the 4 resistors, set at \(1k\Omega\) or \(1000\Omega\), place inline with the <strong>1 2 3 4</strong> of the `DIP Switch SPST x 4' so that <strong>terminal 1</strong> of each resistor is in the GND rail and <strong>terminal 2</strong> is in column <strong>d</strong> </li>
 <li>finally, connect the `DIP Switch SPST x 4' to the Arduino Uno so that the switch positions <strong>1,2,3,4</strong> are wired into the pins <strong>13,12,9,8</strong>.</li>
 </ol>
 <div align=center>
@@ -372,7 +372,7 @@ The same process is repeated, so if the entire <code>if()</code> statement is <c
 }
 </code></pre>
 <p>The next block of code shown below produces a binary output that matches the switch positions for a decimal value of 3.</p>
-<pre><code class="language-C++">else if(one == false &amp;&amp; two == true &amp;&amp; three == false &amp;&amp; four == false)
+<pre><code class="language-C++">else if(one == true &amp;&amp; two == true &amp;&amp; three == false &amp;&amp; four == false)
 {
  digitalWrite(positionOne, HIGH);
  digitalWrite(positionTwo, HIGH);
