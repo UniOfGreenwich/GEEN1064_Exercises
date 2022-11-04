@@ -125,7 +125,7 @@ You now need to add:
 
 - 4 x LED, any colour
 - 4 x resistor, set at \\(0.22k\Omega\\) or \\(220\Omega\\)
-- 4 x resistors, set at \\(10k\Omega\\) or \\(10000\Omega\\)
+- 4 x resistors, set at \\(1k\Omega\\) or \\(1000\Omega\\)
 - 1 x DIP Switch SPST x 4  *use the search bar*
   
 Placing components (refer to the image after the steps below):
@@ -134,7 +134,7 @@ Placing components (refer to the image after the steps below):
 2. . Place the resistors inline with the **Cathode** of each LED so that **terminal 2** is in column **b** and **terminal 1** in the GND rail.
 3. connect a wire from inline with each **Anode** of LED, and connect from left to right of the breadboard, to **Pins 5 4 3 2** in the Arduino Uno.
 4. Place the `DIP Switch SPST x 4' so that it bridges the breadboard in a horizontal position so that where number 1 is displayed the pins are on row **12** column **e**. Therefore the **O** of **On** is in row **12** column **f**.
-5. Using the 4 resistors, set at \\(10k\Omega\\) or \\(10000\Omega\\), place inline with the **1 2 3 4** of the `DIP Switch SPST x 4' so that **terminal 1** of each resistor is in the GND rail and **terminal 2** is in column **d** 
+5. Using the 4 resistors, set at \\(1k\Omega\\) or \\(1000\Omega\\), place inline with the **1 2 3 4** of the `DIP Switch SPST x 4' so that **terminal 1** of each resistor is in the GND rail and **terminal 2** is in column **d** 
 6. finally, connect the `DIP Switch SPST x 4' to the Arduino Uno so that the switch positions **1,2,3,4** are wired into the pins **13,12,9,8**.
    
 <div align=center>
@@ -311,7 +311,7 @@ The next block of code shown below produces a binary output that matches the swi
 
 
 ```C++
-else if(one == false && two == true && three == false && four == false)
+else if(one == true && two == true && three == false && four == false)
 {
  digitalWrite(positionOne, HIGH);
  digitalWrite(positionTwo, HIGH);
