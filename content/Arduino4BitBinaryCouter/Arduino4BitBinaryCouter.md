@@ -124,8 +124,8 @@ If you have chosen the Arduino and breadboard template from the the **Components
 You now need to add:
 
 - 4 x LED, any colour
-- 4 x resistor, set at 0.22k$\Omega$ or 220$\Omega$
-- 4 x resistors, set at 10k$\Omega$ or 10000$\Omega$
+- 4 x resistor, set at \\(0.22k\Omega\\) or \\(220\Omega\\)
+- 4 x resistors, set at \\(10k\Omega\\) or \\(10000\Omega\\)
 - 1 x DIP Switch SPST x 4  *use the search bar*
   
 Placing components (refer to the image after the steps below):
