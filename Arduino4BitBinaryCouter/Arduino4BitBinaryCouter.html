@@ -272,6 +272,32 @@ int four;
 <p>Line 1 to 4, declares the LEDs, where <code>positionFour</code> through to <code>positionOne</code> represents the \(2^3 \Leftarrow 2^0\).</p>
 <p>Line 6 to 9, declares the switches, where <code>switchOne</code> through to <code>switchFour</code> represents the \(2^0 \Rightarrow 2^3\).</p>
 <p>Line 11 to 14, will store the state of each switch.</p>
+<p>Should look like this now: </p>
+<pre><code class="language-C++">int positionOne = 2;
+int positionTwo = 3;
+int positionThree = 4;
+int positionFour = 5;
+
+int switchOne = 13;
+int switchTwo = 12;
+int switchThree = 9;
+int switchFour = 8;
+
+int one;
+int two;
+int three;
+int four;
+
+void setup()
+{
+
+}
+
+void loop()
+{
+
+}
+</code></pre>
 <blockquote>
 <p>TODO: </p>
 <p>Add inline comments for each variable to describe their purpose, using the // comment symbols</p>
@@ -375,6 +401,74 @@ The same process is repeated, so if the entire <code>if()</code> statement is <c
 <div align=center>
 <p><img src="./figures/step4.png" alt="" /></p>
 </div>
+<h2 id="full-code-below"><a class="header" href="#full-code-below">FULL CODE BELOW</a></h2>
+<pre><code class="language-C++">int positionOne = 2;
+int positionTwo = 3;
+int positionThree = 4;
+int positionFour = 5;
+
+int switchOne = 13;
+int switchTwo = 12;
+int switchThree = 9;
+int switchFour = 8;
+
+int one;
+int two;
+int three;
+int four;
+
+void setup()
+{
+  pinMode(positionOne, OUTPUT);
+  pinMode(positionTwo, OUTPUT);
+  pinMode(positionThree, OUTPUT);
+  pinMode(positionFour, OUTPUT);
+  
+  pinMode(switchOne, INPUT);
+  pinMode(switchTwo, INPUT);
+  pinMode(switchThree, INPUT);
+  pinMode(switchFour, INPUT);
+}
+
+void loop()
+{
+  one = digitalRead(switchOne);
+  two = digitalRead(switchTwo);
+  three = digitalRead(switchThree);
+  four = digitalRead(switchFour);
+
+  if((one == false &amp;&amp; two == false) &amp;&amp; (three == false &amp;&amp; four == false))
+  {
+    digitalWrite(positionOne, LOW);
+    digitalWrite(positionTwo, LOW);
+    digitalWrite(positionThree, LOW);
+    digitalWrite(positionFour, LOW);
+  }
+
+  else if((one == true &amp;&amp; two == false) &amp;&amp; (three == false &amp;&amp; four == false))
+  {
+    digitalWrite(positionOne, HIGH);
+    digitalWrite(positionTwo, LOW);
+    digitalWrite(positionThree, LOW);
+    digitalWrite(positionFour, LOW);
+  }
+  else if(one == false &amp;&amp; two == true &amp;&amp; three == false &amp;&amp; four == false)
+  {
+    digitalWrite(positionOne, LOW);
+    digitalWrite(positionTwo, HIGH);
+    digitalWrite(positionThree, LOW);
+    digitalWrite(positionFour, LOW);
+  }
+  else if(one == true &amp;&amp; two == true &amp;&amp; three == false &amp;&amp; four == false)
+  {
+    digitalWrite(positionOne, HIGH);
+    digitalWrite(positionTwo, HIGH);
+    digitalWrite(positionThree, LOW);
+    digitalWrite(positionFour, LOW);
+  }
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
