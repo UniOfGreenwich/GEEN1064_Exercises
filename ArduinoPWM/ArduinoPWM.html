@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Flow Charts and Diagrams - GEEN1064 Computing Exercises</title>
+        <title>Arduino and Pulse Width Modulation - GEEN1064 Computing Exercises</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../FlowChartsDiagrams/FlowChartsDiagrams.html" class="active"><strong aria-hidden="true">1.</strong> Flow Charts and Diagrams</a></li><li class="chapter-item expanded "><a href="../Arduino4BitBinaryCouter/Arduino4BitBinaryCouter.html"><strong aria-hidden="true">2.</strong> Arduino 4-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html"><strong aria-hidden="true">3.</strong> Arduino 8-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html"><strong aria-hidden="true">4.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html"><strong aria-hidden="true">5.</strong> Seven Segmented Diplay</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Motor Controller With Arduino</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../FlowChartsDiagrams/FlowChartsDiagrams.html"><strong aria-hidden="true">1.</strong> Flow Charts and Diagrams</a></li><li class="chapter-item expanded "><a href="../Arduino4BitBinaryCouter/Arduino4BitBinaryCouter.html"><strong aria-hidden="true">2.</strong> Arduino 4-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html"><strong aria-hidden="true">3.</strong> Arduino 8-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html" class="active"><strong aria-hidden="true">4.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html"><strong aria-hidden="true">5.</strong> Seven Segmented Diplay</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Motor Controller With Arduino</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -111,7 +111,7 @@
                         <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/edit/master/content/FlowChartsDiagrams/FlowChartsDiagrams.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/edit/master/content/ArduinoPWM/ArduinoPWM.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
                     </div>
@@ -138,62 +138,122 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="flow-charts-and-diagrams"><a class="header" href="#flow-charts-and-diagrams">Flow Charts and Diagrams</a></h1>
-<p>In this lab you are going practice building flow charts and diagrams as a way to map how an alogrithm will work. </p>
-<p>You will need to navigate to <a href="https://mermaid-js.github.io/mermaid/#/">https://mermaid-js.github.io/mermaid/#/</a> to complete this lab.</p>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>This lab will introduce you to Pulse Width Modulation (PWM) using the Arduino. </p>
 <blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>Remember to refer to documentation of a tool you are using to understand how to use it...</li>
-<li><a href="https://mermaid-js.github.io/mermaid/#/flowchart">https://mermaid-js.github.io/mermaid/#/flowchart</a></li>
-</ul>
+<p>The primary tool for this project will be TinkerCad -&gt; https://www.tinkercad.com</p>
 </blockquote>
-<h2 id="1-design-an-alogrithm-or-flow-process-for-making-a-hot-drink"><a class="header" href="#1-design-an-alogrithm-or-flow-process-for-making-a-hot-drink">1. Design an alogrithm or flow process for making a hot drink</a></h2>
-<p><strong>The Code</strong></p>
-<pre><code class="language-mermaid">flowchart TD
-    start(Make a Cup of Tea)
-    stop(enjoy that cuppa?!)
-   
-    get_beverage_container[/Get Beverage Container/]
-    container_type{What type?}
-    mug[mug]
-    flask[flask]
-    teabag[/find tea bag \n and put in container/]
-    sugar{sugar?}
-   
-    get_kettle[/get the kettle/]
-    kettle_volume_check{is there enough \n water in the Kettle?}
-    fill_kettle[/fill the kettel \n to desired volume/]
-    turn_kettle_on[/Start to boil the water/]
-    boiled{has the kettle boiled}
-    start_pour[/decant kettle in to container/]
-    container_cap{is cup filled to \n desired volume}
-    end_pour[/stop pouring/]
+<p>This project follows on from the lecture  <strong>Analogue Write with Arduino</strong> and is designed to put into practice the theory. You will control the brightness of an LED using PWM pins on the Arudino Uno by using the <code>analogWrite()</code> function and view the voltage and PWM value in the serial monitor using the <code>Serial.print()</code> and <code>Serial.println()</code> functions. </p>
+<h2 id="setting-up-the-circuit"><a class="header" href="#setting-up-the-circuit">Setting up the Circuit</a></h2>
+<p>Once loaded login to TinkerCad and then click on <strong>Circuits</strong> &gt; <strong>Create new Circuit</strong>.</p>
+<p>Change the circuit name, located top-left hand side of the screen to <code>PWM_ LED</code>, see image below.</p>
+<div align=center>
+<p><img src="./figures/step1.png" alt="" /></p>
+</div>
+<p>Next you need to add an Arduino Uno and a breadboard that need to be connected together from the 5V and GND pins of the Arduino to the power and ground rails of the breadboard. </p>
+<p>This can be achieved by either selecting the Arduino Uno and the breadboard from <strong>Components</strong> &gt; <strong>Basic</strong> components or by changing <strong>Components</strong> &gt; <strong>Basic</strong> to <strong>Components</strong> &gt; <strong>Starter</strong> and choosing Arduino Uno and the Breadboard starter. Please refer to image below.</p>
+<div align=center>
+<p><img src="../MotorController/figures/step3-1.png" alt="" /></p>
+</div>
+<p>If you have chosen the Arduino and breadboard template from the the <strong>Components</strong> &gt; <strong>Starter</strong> then these two components are already connected with a corresponding red 5V line and GND line.</p>
+<ul>
+<li>1 x LED, any colour</li>
+<li>1 x Potentiometer, set at \(10k\Omega\) or \(10000\Omega\)</li>
+<li>1 x resistor, set at \(0.22k\Omega\) or \(220\Omega\)</li>
+</ul>
+<p>Placing components (refer to the image below the steps):</p>
+<ol>
+<li>Place the LED so that the <strong>cathode</strong> and <strong>anode</strong> is in row <strong>18</strong> and <strong>19</strong> column <strong>e</strong> respectively.</li>
+<li>Place the resistor's <strong>terminal 2</strong> in row<strong>18</strong> column<strong>b</strong> and <strong>terminal 1</strong> in the GND rail</li>
+<li>connect a wire from row <strong>19</strong> column <strong>d</strong> to the PWM pin \textasciitilde6 in the Arduino Uno</li>
+<li>Place the potentiometer so that <strong>Terminal 1</strong>, <strong>Wiper</strong> and <strong>Terminal 2</strong> are in row<strong>26</strong>,<strong>27</strong> and<strong>28</strong> column <strong>e</strong> respectively.</li>
+<li>Wire up the potentiometer so that terminal <strong>1</strong> and <strong>2</strong> are in GND and 5V line of the breadboard. then take the Wiper to <strong>A0</strong> of Arduino Uno. </li>
+</ol>
+<p><em>Note the wires are placed in row <strong>26</strong>, <strong>28</strong> and <strong>27</strong> column <strong>d</strong> respectively.</em></p>
+<div align=center>
+<p><img src="figures/step2.png" alt="" /></p>
+</div>
+<h2 id="programming-the-circuit"><a class="header" href="#programming-the-circuit">Programming the Circuit</a></h2>
+<pre><code class="language-C++">void setup()
+{
 
+}
 
-    start --&gt; get_beverage_container --&gt; container_type
-    container_type --&gt; mug
-    container_type --&gt; flask
-    mug &amp; flask --&gt; teabag --&gt; get_kettle --&gt; kettle_volume_check
-    kettle_volume_check -- no --&gt; fill_kettle --&gt; kettle_check
-    kettle_volume_check -- yes --&gt; turn_kettle_on --&gt; boiled
-    boiled -- no --&gt; boiled -- yes --&gt; start_pour
-    start_pour --&gt; container_cap -- no --&gt; container_cap -- yes --&gt; end_pour
-    end_pour --&gt; stir
-    turn_kettle_on --&gt; sugar -- no --&gt; stir --&gt; stop
+void loop()
+{
+
+}
+</code></pre>
+<p>Now you are ready to set up all the Sketch up as follows:</p>
+<pre><code class="language-C++">int ledPin = 6;      // LED connected to digital pin 6
+int analogPin = A0;   // potentiometer connected to analog pin A0
+int val = 0;         // variable to store the read value
+
+void setup() {
+  pinMode(ledPin, OUTPUT);  // sets the pin as output
+}
+
+void loop() {
+   val = analogRead(analogPin);  // read the input pin
+   analogWrite(ledPin, val / 4); 
+}
 
 </code></pre>
-<p><strong>The Output</strong></p>
-<p><img src="./figures/mermaid-diagram.png" alt="" /></p>
+<blockquote>
+<p>TODO</p>
+<ul>
+<li>
+<p>Can lines 1 to 3 be refactored so that the variables are declared and initialised on 1 line? Refactor the code to test your answer.</p>
+</li>
+<li>
+<p>Looking inside the <code>void setup()</code> only the <code>ledPin</code> has had its mode changed to <code>OUTPUT</code>. Do we need to need to specify the <code>pinMode</code> for the variable <code>analogPin</code>? Test your theory by adapting the code.</p>
+</li>
+<li>
+<p>What is the purpose of the mathematical operation in line 11? Recall what <code>analogRead</code> returns and how <code>analogWrite</code> operates. Add comment to the the line 11 to briefly describe the code.</p>
+</li>
+<li>
+<p>Describe the relationship between the LED and the resistor based on your observation of your circuit.</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="further-programming"><a class="header" href="#further-programming">Further Programming</a></h2>
+<p>In order to see what is happening numerically with the circuit you will need to send the data to the serial monitor: </p>
+<ol>
+<li>Create a new variable called <code>PWM</code> as an interger data type</li>
+<li>Adjust the code so that <code>void setup()</code> includes the command <code>Serial.begin(9600);</code></li>
+<li>Make a new line after the <code>val = analogRead</code> in <code>void loop()</code> and write <code>PWM = val \ 4;</code></li>
+<li>Next replace <code>analogWrite(ledPin, val \ 4);</code> with <code>analogWrite(ledPin, PWM);</code></li>
+<li>Then finally, modify the code inside the <code>void loop()</code>  to produce an output similar to below with a delay of 500<em>ms</em>.</li>
+</ol>
+<div align=center>
+<p><img src="./figures/step4.png" alt="" /></p>
+</div>
+<p>Now that you have the PWM outputting to the Serial monitor. </p>
+<blockquote>
+<p>QUESTIONS:</p>
+<ul>
+<li>What is the voltage when PWM is 0, 51, 102, 153, 204 and 255? Use the the calculation:</li>
+</ul>
+<p>\[ V = \frac{PWM}{51}\]</p>
+<ul>
+<li>Use a multimeter to measure the voltage out of the pin ~ when the PWM is 51, 102, 153, 204 and 255, why is the multimeter value different to your calculations?</li>
+</ul>
+</blockquote>
+<p>Now adjust the code to output the calculated voltage to the Serial Monitor:</p>
+<ul>
+<li>Add <code>float voltage = 0;</code> to your list of variables at the top of the sketch.</li>
+<li>After the <code>PWM = val /4;</code> add <code>voltage = PWM / 51.0;</code> to a new line</li>
+<li>Output the voltage to the Serial monitor.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../Introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../Arduino4BitBinaryCouter/Arduino4BitBinaryCouter.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -202,10 +262,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../Introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../Arduino4BitBinaryCouter/Arduino4BitBinaryCouter.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
