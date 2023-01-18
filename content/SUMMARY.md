@@ -5,4 +5,5 @@
 - [Arduino 8-bit Binary Counter](./Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.md)
 - [Arduino and Pulse Width Modulation](./ArduinoPWM/ArduinoPWM.md)
 - [Seven Segmented Diplay](./SevenSegmentedDisplay/SevenSegmentedDisplay.md)
-- [Motor Controller With Arduino](./MotorController/MotorController.md)
+- [Multi Coloured LED](./MulticolouredLED/MultiColouredLED.md)
+- [Motor Controller With Arduino](./MotorController/MotorController.md) 
