@@ -146,16 +146,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="multi-coloured-led"><a class="header" href="#multi-coloured-led">Multi Coloured LED</a></h1>
-<h2 id="1-introduction"><a class="header" href="#1-introduction">1 Introduction</a></h2>
+<h2 id="1-introduction"><a class="header" href="#1-introduction">1. Introduction</a></h2>
 <p>In today’s activity we will use an Arduino with and RGB LED to create a range of colours by using different PWM values via code.</p>
 <blockquote>
 <p>The primary tool for this project will be TinkerCad -&gt; https://www.tinkercad.com</p>
 </blockquote>
 <hr />
-<h2 id="2-circuit"><a class="header" href="#2-circuit">2 Circuit</a></h2>
+<h2 id="2-circuit"><a class="header" href="#2-circuit">2. Circuit</a></h2>
 <p>Reproduce the following ciruit, using a cathode RGB LED and 3x 220 \(\Omega\) resistors.</p>
-<p><img src="./figures/RGB_LED.png" alt="" /></p>
-<h2 id="3-code"><a class="header" href="#3-code">3 Code</a></h2>
+<p><img src="./figures/RGB_LED.gif" alt="" /></p>
+<h2 id="3-code"><a class="header" href="#3-code">3. Code</a></h2>
 <p>Now you need to reporduce the following code:</p>
 <pre><code class="language-c++">// Define Pins
 #define bluePin 3
@@ -202,7 +202,99 @@ void setColour(int red, int green, int blue)
 <p>Run the code see how the RGB transistions between different colours. </p>
 <p>You can change the colour of the LED by setting the values of <code>setColour(int red, int green, int blue)</code> ie <code>setColour(10,50,200)</code> and see what produces. Remember <strong>Only</strong> the code in the <code>void loop(){...}</code> happens continously so this where you'd add extra colours. </p>
 <p>Consider modifying the <code>delay()</code> arguments to see if you can get different speeds. <code>delay(1000)</code> is one second, <code>delay(10)</code> is 0.010 seconds and so on.</p>
-<p><img src="./figures/RGB_LED.gif" alt="" /></p>
+<h2 id="4-16-million-colours"><a class="header" href="#4-16-million-colours">4. 16 Million Colours...</a></h2>
+<p>So now you have a basic colour shifter, you can go a head a programme all 16 million colours, manually... you have 5 minuets!</p>
+<p>Actually, what you are going to do is automate this using a bit of maths and conditioning. </p>
+<p>First off underneath the line that says <code>#define redPin 6</code> you need to added the following to define some variables that will be used to make this possible.</p>
+<pre><code class="language-c++">#define redPin 6
+
+//variables to hold our colour intensities and direction
+//and define some initial &quot;random&quot; values to seed it
+int red             = 254;
+int green           = 1;
+int blue            = 127;
+int red_direction   = -1;
+int green_direction = 1;
+int blue_direction  = -1;
+</code></pre>
+<p>Now you are to replace the code within side the <code>void loop(){...}</code></p>
+<pre><code class="language-c++">void loop()
+{
+  red = red + red_direction;   //changing values of LEDs
+  green = green + green_direction;
+  blue = blue + blue_direction;
+
+}
+</code></pre>
+<p>Explanation: </p>
+<ul>
+<li><code>red</code> currently holds the value <code>254</code></li>
+<li>likewise <code>red_direction</code>  holds <code>-1</code></li>
+<li>\(\therefore \) <code>red = red + red-direction</code> \(\Rightarrow\)<code>253 = 254 + -1</code></li>
+</ul>
+<p>Continue with adding code underneath <code>blue = blue + blue_direction</code>:</p>
+<pre><code class="language-c++">
+  blue = blue + blue_direction
+  
+ 
+  //now change direction for each color if it reaches 255
+  if (red &gt;= 255 || red &lt;= 0)
+  {
+    red_direction = red_direction * -1;
+  }
+  if (green &gt;= 255 || green &lt;= 0)
+  {
+    green_direction = green_direction * -1;
+  }
+  if (blue &gt;= 255 || blue &lt;= 0)
+  {
+    blue_direction = blue_direction * -1;
+  }
+
+  setColour(red, green, blue);
+  delay(100);    //a little delay is needed so you can see the change
+
+}
+</code></pre>
+<p>Explanation:</p>
+<ol>
+<li>
+<p><code>if (red &gt;= 255 || red &lt;= 0)</code> </p>
+<ul>
+<li>the conitional statement checks first to see if the variable <code>red</code> is greater than or equal to <code>&gt;=</code> <code>255</code>.</li>
+</ul>
+</li>
+<li>
+<p>the symbols <code>||</code> is the the pipe key twice <code>|</code> usually next to the <code>z</code> key on UK keyboards. This means logical <strong>OR</strong>, that is to say that either side of this comparsion check must evaluate as <code>true</code> in order to execute the code in it's block.</p>
+</li>
+<li>
+<p>the other side shows that <code>red</code> is less than or equal  <code>&lt;=</code> to <code>0</code></p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong>
+&gt;</p>
+<blockquote>
+<p>Remember that we are using the Pulse width modulation(PWM) pins of the Arduino. The PWM pins (~6,~5 and ~3) out put a signal from 0-255 is mapped to 0v and 5v.
+<img src="./figures/analogWrite_ruler.png" alt="" /></p>
+</blockquote>
+</blockquote>
+<ol start="4">
+<li>
+<p><code>red_direction = red_direction * -1;</code></p>
+<ul>
+<li>is interesting right? It's a little maths that changes the direction by which the <code>red</code> changes. </li>
+<li>the first time \(\Rightarrow 1 = (-1) * (-1) \) </li>
+<li>the second time \(\Rightarrow -1 = (1) * (-1) \) </li>
+</ul>
+</li>
+<li>
+<p>the same for <code>green</code> and <code>blue</code></p>
+</li>
+<li>
+<p>Currently the <code>delay</code> is set to 5ms, try to experiment with this from 0 to 1000 and see if you can see all 16 million shades?!?!</p>
+</li>
+</ol>
 
                     </main>
 
