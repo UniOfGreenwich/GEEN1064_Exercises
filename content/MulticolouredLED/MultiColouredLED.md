@@ -1,19 +1,19 @@
 # Multi Coloured LED
 
-## 1 Introduction 
+## 1. Introduction 
 
 In today’s activity we will use an Arduino with and RGB LED to create a range of colours by using different PWM values via code.
 
 > The primary tool for this project will be TinkerCad -> https://www.tinkercad.com
 -------------------
 
-## 2 Circuit
+## 2. Circuit
 
 Reproduce the following ciruit, using a cathode RGB LED and 3x 220 \\(\Omega\\) resistors.
 
-![](./figures/RGB_LED.png)
+![](./figures/RGB_LED.gif)
 
-## 3 Code
+## 3. Code
 
 Now you need to reporduce the following code:
 
@@ -68,4 +68,90 @@ You can change the colour of the LED by setting the values of `setColour(int red
 
 Consider modifying the `delay()` arguments to see if you can get different speeds. `delay(1000)` is one second, `delay(10)` is 0.010 seconds and so on.
 
-![](./figures/RGB_LED.gif)
+## 4. 16 Million Colours...
+
+So now you have a basic colour shifter, you can go a head a programme all 16 million colours, manually... you have 5 minuets!
+
+Actually, what you are going to do is automate this using a bit of maths and conditioning. 
+
+First off underneath the line that says `#define redPin 6` you need to added the following to define some variables that will be used to make this possible.
+
+```c++
+#define redPin 6
+
+//variables to hold our colour intensities and direction
+//and define some initial "random" values to seed it
+int red             = 254;
+int green           = 1;
+int blue            = 127;
+int red_direction   = -1;
+int green_direction = 1;
+int blue_direction  = -1;
+```
+
+Now you are to replace the code within side the `void loop(){...}`
+
+```c++
+void loop()
+{
+  red = red + red_direction;   //changing values of LEDs
+  green = green + green_direction;
+  blue = blue + blue_direction;
+
+}
+```
+
+Explanation: 
+ - `red` currently holds the value `254`
+ - likewise `red_direction`  holds `-1`
+ - \\(\therefore \\) `red = red + red-direction` \\(\Rightarrow\\)`253 = 254 + -1`
+
+Continue with adding code underneath `blue = blue + blue_direction`:
+
+```c++
+
+  blue = blue + blue_direction
+  
+ 
+  //now change direction for each color if it reaches 255
+  if (red >= 255 || red <= 0)
+  {
+    red_direction = red_direction * -1;
+  }
+  if (green >= 255 || green <= 0)
+  {
+    green_direction = green_direction * -1;
+  }
+  if (blue >= 255 || blue <= 0)
+  {
+    blue_direction = blue_direction * -1;
+  }
+
+  setColour(red, green, blue);
+  delay(100);    //a little delay is needed so you can see the change
+
+}
+```
+
+Explanation:
+
+1. `if (red >= 255 || red <= 0)` 
+   - the conitional statement checks first to see if the variable `red` is greater than or equal to `>=` `255`.
+
+2. the symbols `||` is the the pipe key twice `|` usually next to the `z` key on UK keyboards. This means logical **OR**, that is to say that either side of this comparsion check must evaluate as `true` in order to execute the code in it's block.
+
+3. the other side shows that `red` is less than or equal  `<=` to `0`
+
+>**Note:**
+>>
+>> Remember that we are using the Pulse width modulation(PWM) pins of the Arduino. The PWM pins (~6,~5 and ~3) out put a signal from 0-255 is mapped to 0v and 5v.
+>> ![](./figures/analogWrite_ruler.png)
+
+4. `red_direction = red_direction * -1;`
+   - is interesting right? It's a little maths that changes the direction by which the `red` changes. 
+   - the first time \\(\Rightarrow 1 = (-1) * (-1) \\) 
+   - the second time \\(\Rightarrow -1 = (1) * (-1) \\) 
+
+5. the same for `green` and `blue`
+
+6. Currently the `delay` is set to 5ms, try to experiment with this from 0 to 1000 and see if you can see all 16 million shades?!?!
