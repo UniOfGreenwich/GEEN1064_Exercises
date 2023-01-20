@@ -7,11 +7,44 @@ In today’s activity we will use an Arduino with and RGB LED to create a range 
 > The primary tool for this project will be TinkerCad -> https://www.tinkercad.com
 -------------------
 
+## 2. Some Theory...
+
+Using an RGB LED you can produce other colors, you can combine these three colors in different intensities. To adjust the intensity of each LED you can use a PWM signal.
+
+Because the LEDs are very close to each other, our eyes see the result of the combination of colors, rather than the three colors individually.
+
+To have an idea on how to combine the colors, take a look at the following chart. This is the simplest color mixing chart, but gives you an idea how it works and how to produce different colors.
+
+
+![](./figures/colourWheel.png)
+
+
+### 2.1 Common Anode and Common Cathode RGB LEDs
+
+There are two kinds of RGB LEDs: common anode LED and common cathode LED. The figure below illustrates a common anode and a common cathode LED.
+
+![](./figures/cathode-anonde.png)
+
+In a common cathode RGB LED, all three LEDs share a negative connection (cathode). In a common anode RGB LED, the three LEDs share a positive connection (anode).
+
+This results in an LED that has 4 pins, one for each LED, and one common cathode or one common anode.
+
+### 2.2 RGB LED Pins
+
+RGB LEDs have four leads—one for each LED and another for the common anode or cathode. You can identify each lead by its length, as shown in the following figure.
+
+![](./figures/cathode-anonde2.png)
+
+With the LED facing you so the anode or cathode (the longest lead) is second from the left, the leads should be in the following order: red, anode or cathode, green, and blue.
+
+
 ## 2. Circuit
 
 Reproduce the following ciruit, using a cathode RGB LED and 3x 220 \\(\Omega\\) resistors.
 
 ![](./figures/RGB_LED.gif)
+
+
 
 ## 3. Code
 
@@ -148,10 +181,13 @@ Explanation:
 >> ![](./figures/analogWrite_ruler.png)
 
 4. `red_direction = red_direction * -1;`
-   - is interesting right? It's a little maths that changes the direction by which the `red` changes. 
+   - is interesting right? It's a little maths that changes the direction by which the `red` changes (increments/decrements).
    - the first time \\(\Rightarrow 1 = (-1) * (-1) \\) 
    - the second time \\(\Rightarrow -1 = (1) * (-1) \\) 
-
+   - the third time \\(\Rightarrow 1 = (-1) * (-1) \\) 
+   - the forth time \\(\Rightarrow -1 = (1) * (-1) \\) 
+   - and so on... 
+  
 5. the same for `green` and `blue`
 
 6. Currently the `delay` is set to 5ms, try to experiment with this from 0 to 1000 and see if you can see all 16 million shades?!?!
