@@ -152,6 +152,20 @@
 <p>The primary tool for this project will be TinkerCad -&gt; https://www.tinkercad.com</p>
 </blockquote>
 <hr />
+<h2 id="2-some-theory"><a class="header" href="#2-some-theory">2. Some Theory...</a></h2>
+<p>Using an RGB LED you can produce other colors, you can combine these three colors in different intensities. To adjust the intensity of each LED you can use a PWM signal.</p>
+<p>Because the LEDs are very close to each other, our eyes see the result of the combination of colors, rather than the three colors individually.</p>
+<p>To have an idea on how to combine the colors, take a look at the following chart. This is the simplest color mixing chart, but gives you an idea how it works and how to produce different colors.</p>
+<p><img src="./figures/colourWheel.png" alt="" /></p>
+<h3 id="21-common-anode-and-common-cathode-rgb-leds"><a class="header" href="#21-common-anode-and-common-cathode-rgb-leds">2.1 Common Anode and Common Cathode RGB LEDs</a></h3>
+<p>There are two kinds of RGB LEDs: common anode LED and common cathode LED. The figure below illustrates a common anode and a common cathode LED.</p>
+<p><img src="./figures/cathode-anonde.png" alt="" /></p>
+<p>In a common cathode RGB LED, all three LEDs share a negative connection (cathode). In a common anode RGB LED, the three LEDs share a positive connection (anode).</p>
+<p>This results in an LED that has 4 pins, one for each LED, and one common cathode or one common anode.</p>
+<h3 id="22-rgb-led-pins"><a class="header" href="#22-rgb-led-pins">2.2 RGB LED Pins</a></h3>
+<p>RGB LEDs have four leads—one for each LED and another for the common anode or cathode. You can identify each lead by its length, as shown in the following figure.</p>
+<p><img src="./figures/cathode-anonde2.png" alt="" /></p>
+<p>With the LED facing you so the anode or cathode (the longest lead) is second from the left, the leads should be in the following order: red, anode or cathode, green, and blue.</p>
 <h2 id="2-circuit"><a class="header" href="#2-circuit">2. Circuit</a></h2>
 <p>Reproduce the following ciruit, using a cathode RGB LED and 3x 220 \(\Omega\) resistors.</p>
 <p><img src="./figures/RGB_LED.gif" alt="" /></p>
@@ -283,9 +297,12 @@ int blue_direction  = -1;
 <li>
 <p><code>red_direction = red_direction * -1;</code></p>
 <ul>
-<li>is interesting right? It's a little maths that changes the direction by which the <code>red</code> changes. </li>
+<li>is interesting right? It's a little maths that changes the direction by which the <code>red</code> changes (increments/decrements).</li>
 <li>the first time \(\Rightarrow 1 = (-1) * (-1) \) </li>
 <li>the second time \(\Rightarrow -1 = (1) * (-1) \) </li>
+<li>the third time \(\Rightarrow 1 = (-1) * (-1) \) </li>
+<li>the forth time \(\Rightarrow -1 = (1) * (-1) \) </li>
+<li>and so on... </li>
 </ul>
 </li>
 <li>
