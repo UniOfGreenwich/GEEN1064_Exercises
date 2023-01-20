@@ -4,7 +4,7 @@
 
 In today’s activity we will use an Arduino with and RGB LED to create a range of colours by using different PWM values via code.
 
-> The primary tool for this project will be TinkerCad -> https://www.tinkercad.com
+> The primary tool for this project will be TinkerCad -> [https://www.tinkercad.com](https://www.tinkercad.com)
 -------------------
 
 ## 2. Some Theory...
