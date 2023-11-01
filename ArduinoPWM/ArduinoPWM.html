@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -32,7 +32,8 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -61,40 +62,69 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../FlowChartsDiagrams/FlowChartsDiagrams.html"><strong aria-hidden="true">1.</strong> Flow Charts and Diagrams</a></li><li class="chapter-item expanded "><a href="../Arduino4BitBinaryCouter/Arduino4BitBinaryCouter.html"><strong aria-hidden="true">2.</strong> Arduino 4-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html"><strong aria-hidden="true">3.</strong> Arduino 8-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html" class="active"><strong aria-hidden="true">4.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html"><strong aria-hidden="true">5.</strong> Seven Segmented Diplay</a></li><li class="chapter-item expanded "><a href="../MulticolouredLED/MultiColouredLED.html"><strong aria-hidden="true">6.</strong> Multi Coloured LED</a></li><li class="chapter-item expanded "><a href="../MotorController/MotorController.html"><strong aria-hidden="true">7.</strong> Motor Controller With Arduino</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../FlowChartsDiagrams/FlowChartsDiagrams.html"><strong aria-hidden="true">1.</strong> Flow Charts and Diagrams</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html" class="active"><strong aria-hidden="true">2.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../MulticolouredLED/MultiColouredLED.html"><strong aria-hidden="true">3.</strong> Multi Coloured LED</a></li><li class="chapter-item expanded "><a href="../Arduino4BitBinaryCouter/Arduino4BitBinaryCouter.html"><strong aria-hidden="true">4.</strong> Arduino 4-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html"><strong aria-hidden="true">5.</strong> Arduino 8-bit Binary Counter</a></li><li class="chapter-item expanded "><a href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html"><strong aria-hidden="true">6.</strong> Seven Segmented Diplay</a></li><li class="chapter-item expanded "><a href="../MotorController/MotorController.html"><strong aria-hidden="true">7.</strong> Motor Controller With Arduino</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -230,38 +260,35 @@ void loop() {
 <li>Adjust the code so that <code>void setup()</code> includes the command <code>Serial.begin(9600);</code></li>
 <li>Make a new line after the <code>val = analogRead</code> in <code>void loop()</code> and write <code>PWM = val \ 4;</code></li>
 <li>Next replace <code>analogWrite(ledPin, val \ 4);</code> with <code>analogWrite(ledPin, PWM);</code></li>
-<li>Then finally, modify the code inside the <code>void loop()</code>  to produce an output similar to below with a delay of 500<em>ms</em>.</li>
+<li>Then you need to send information to the serial monitor using the <code>Serial.print()</code> and <code>Serial.println()</code>
+<ul>
+<li>
+<pre><code class="language-c++">Serial.print(&quot;value of Pot: &quot;);
+Serial.print(val);
+Serial.print(&quot;\t pwm valueL: &quot;);
+Serial.println(pwm);
+</code></pre>
+</li>
+</ul>
+</li>
+<li>Then finally, modify the code inside the <code>void loop()</code>  to produce an output similar to below with a delay of 500<em>ms</em>.
+<ul>
+<li><code>delay(500);</code> , after the <code>Serial.println(pwm);</code> line. </li>
+</ul>
+</li>
 </ol>
 <div align=center>
 <p><img src="./figures/step4.png" alt="" /></p>
 </div>
-<p>Now that you have the PWM outputting to the Serial monitor. </p>
-<blockquote>
-<p>QUESTIONS:</p>
-<ul>
-<li>What is the voltage when PWM is 0, 51, 102, 153, 204 and 255? Use the the calculation:</li>
-</ul>
-<p>\[ V = \frac{PWM}{51}\]</p>
-<ul>
-<li>Use a multimeter to measure the voltage out of the pin ~ when the PWM is 51, 102, 153, 204 and 255, why is the multimeter value different to your calculations?</li>
-</ul>
-</blockquote>
-<p>Now adjust the code to output the calculated voltage to the Serial Monitor:</p>
-<ul>
-<li>Add <code>float voltage = 0;</code> to your list of variables at the top of the sketch.</li>
-<li>After the <code>PWM = val /4;</code> add <code>voltage = PWM / 51.0;</code> to a new line</li>
-<li>Output the voltage to the Serial monitor.</li>
-</ul>
-
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../FlowChartsDiagrams/FlowChartsDiagrams.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../MulticolouredLED/MultiColouredLED.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -271,11 +298,11 @@ void loop() {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../FlowChartsDiagrams/FlowChartsDiagrams.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../MulticolouredLED/MultiColouredLED.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -301,5 +328,6 @@ void loop() {
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>
