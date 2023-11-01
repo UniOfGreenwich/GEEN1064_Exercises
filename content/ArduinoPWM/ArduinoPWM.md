@@ -101,26 +101,18 @@ In order to see what is happening numerically with the circuit you will need to 
 2.  Adjust the code so that `void setup()` includes the command `Serial.begin(9600);`
 3.  Make a new line after the `val = analogRead` in `void loop()` and write `PWM = val \ 4;`
 4.  Next replace `analogWrite(ledPin, val \ 4);` with `analogWrite(ledPin, PWM);`
-5.  Then finally, modify the code inside the `void loop()`  to produce an output similar to below with a delay of 500*ms*.
+5. Then you need to send information to the serial monitor using the `Serial.print()` and `Serial.println()`
+   - ```c++
+     Serial.print("value of Pot: ");
+     Serial.print(val);
+     Serial.print("\t pwm valueL: ");
+     Serial.println(pwm);
+     ``` 
+6.  Then finally, modify the code inside the `void loop()`  to produce an output similar to below with a delay of 500*ms*.
+    - `delay(500);` , after the `Serial.println(pwm);` line. 
 
 <div align=center>
 
 ![](./figures/step4.png)
 
 </div>
-
-Now that you have the PWM outputting to the Serial monitor. 
-
-> QUESTIONS:
-> 
-> - What is the voltage when PWM is 0, 51, 102, 153, 204 and 255? Use the the calculation:
-> 
->  \\[ V = \frac{PWM}{51}\\]
->
-> - Use a multimeter to measure the voltage out of the pin ~ when the PWM is 51, 102, 153, 204 and 255, why is the multimeter value different to your calculations?
-
-Now adjust the code to output the calculated voltage to the Serial Monitor:
-
- - Add `float voltage = 0;` to your list of variables at the top of the sketch.
-- After the `PWM = val /4;` add `voltage = PWM / 51.0;` to a new line
-- Output the voltage to the Serial monitor.
