@@ -142,3 +142,8 @@ void tempIndicator(float L_temp)
     - If `L_temp` is greater than 30.0, `>`, it turns on the red LED.
 
 
+> **More**
+>> - Added four more lights to show granularity for the sensor readings
+>> - to program this you will need more 4 more LEDs and Resistor pairs connected to the Arduino
+>> - Repeart steps in the above to add more LEDs to the script, remember the varaibles must have unique names. 
+>> `tempIndicator()` needs more functionality so more `if` conditions to increment in steps of 8 between 0 and 45
