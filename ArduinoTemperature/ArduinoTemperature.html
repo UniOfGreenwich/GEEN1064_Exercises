@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Flow Charts and Diagrams - GEEN1064 Computing Exercises</title>
+        <title>Arduino Temperature - GEEN1064 Computing Exercises</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../FlowChartsDiagrams/FlowChartsDiagrams.html" class="active"><strong aria-hidden="true">1.</strong> Flow Charts and Diagrams</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html"><strong aria-hidden="true">2.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../ArduinoTemperature/ArduinoTemperature.html"><strong aria-hidden="true">3.</strong> Arduino Temperature</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Multi Coloured LED</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Arduino 4-bit Binary Counter</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Arduino 8-bit Binary Counter</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Seven Segmented Diplay</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Motor Controller With Arduino</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../FlowChartsDiagrams/FlowChartsDiagrams.html"><strong aria-hidden="true">1.</strong> Flow Charts and Diagrams</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html"><strong aria-hidden="true">2.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../ArduinoTemperature/ArduinoTemperature.html" class="active"><strong aria-hidden="true">3.</strong> Arduino Temperature</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Multi Coloured LED</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Arduino 4-bit Binary Counter</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Arduino 8-bit Binary Counter</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Seven Segmented Diplay</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Motor Controller With Arduino</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -146,7 +146,7 @@
                         <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/edit/master/content/FlowChartsDiagrams/FlowChartsDiagrams.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/edit/master/content/ArduinoTemperature/ArduinoTemperature.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -175,65 +175,177 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="flow-charts-and-diagrams"><a class="header" href="#flow-charts-and-diagrams">Flow Charts and Diagrams</a></h1>
-<p>In this lab you are going practice building flow charts and diagrams as a way to map how an alogrithm will work. </p>
-<p>You will need to navigate to <a href="https://mermaid-js.github.io/mermaid/#/">https://mermaid-js.github.io/mermaid/#/</a> to complete this lab.</p>
-<blockquote>
-<p><strong>Note:</strong></p>
+                        <h1 id="arduino-temperature"><a class="header" href="#arduino-temperature">Arduino Temperature</a></h1>
+<h2 id="1-designing-the-circuit"><a class="header" href="#1-designing-the-circuit">1. Designing the circuit</a></h2>
 <ul>
-<li>Remember to refer to documentation of a tool you are using to understand how to use it...</li>
-<li><a href="https://mermaid-js.github.io/mermaid/#/flowchart">https://mermaid-js.github.io/mermaid/#/flowchart</a></li>
+<li>
+<p>Connect your temperature sensor (e.g., a thermistor or any analog temperature sensor) to analog pin A0.</p>
+</li>
+<li>
+<p>Connect four LEDs (with appropriate current-limiting resistors) to digital pins 10, 11, 12, and 13 for blue, green, orange, and red, respectively.</p>
+<ul>
+<li>You can change the LEDs colour by clicking on it and change the colour </li>
+</ul>
+</li>
+<li>
+<p>The resistance value can be changed on the resistors by clicking them, set them to 220 </p>
+</li>
+<li>
+<p>Upload the code to your Arduino board using the Arduino IDE.</p>
+</li>
+<li>
+<p>Open the Serial Monitor in the Arduino IDE to view the ADC value, temperature, and voltage readings.</p>
+</li>
+<li>
+<p>Observe how the LEDs change based on the temperature range.</p>
+</li>
+<li>
+<p>This code provides a simple temperature monitoring system with visual LED indicators. The LEDs will change their state according to the detected temperature.</p>
+</li>
+</ul>
+<div align=center>
+<p><img src="figures/arduinoTempSetup.png" alt="" /></p>
+</div>
+<h2 id="2-define-constants-and-variables"><a class="header" href="#2-define-constants-and-variables">2. Define Constants and Variables</a></h2>
+<ul>
+<li>
+<p><code>const int tempPin = A0</code>: Specifies the analog pin (A0) where the temperature sensor is connected.</p>
+</li>
+<li>
+<p><code>const int redLED = 13, orangeLED = 12, greenLED = 11, blueLED = 10</code>: Define the digital pins for four LEDs.</p>
+</li>
+<li>
+<p><code>int adcValue;</code>, <code>float voltage, temperature;</code>: Variables to store the analog-to-digital converter (ADC) reading, voltage, and temperature values.</p>
+</li>
+</ul>
+<pre><code class="language-c++">const int tempPin = A0;
+const int redLED = 13, orangeLED = 12, greenLED = 11, blueLED = 10;
+int adcValue;
+float voltage, temperature;
+</code></pre>
+<h2 id="3--setup-function"><a class="header" href="#3--setup-function">3.  Setup Function:</a></h2>
+<ul>
+<li>
+<p>Set the <code>pinMode</code> for <code>tempPin</code> as <code>INPUT</code> since it's used to read the analog sensor.</p>
+</li>
+<li>
+<p>Set the <code>pinMode</code> for <code>redLED</code>, <code>orangeLED</code>, <code>greenLED</code>, and <code>blueLED</code> as <code>OUTPUT</code> to control the LEDs.</p>
+</li>
+<li>
+<p>Initialize the serial communication at a baud rate of 9600 to enable data logging and debugging.</p>
+</li>
+</ul>
+<pre><code class="language-c++">void setup()
+{
+  pinMode(tempPin,INPUT);
+  
+  pinMode(redLED,OUTPUT);
+  pinMode(orangeLED,OUTPUT);
+  pinMode(greenLED,OUTPUT);
+  pinMode(blueLED,OUTPUT);
+  
+  Serial.begin(9600); // bits per second AKA Baud Rate
+}
+</code></pre>
+<h2 id="4-loop-function"><a class="header" href="#4-loop-function">4. Loop Function:</a></h2>
+<p>To code the loop function you need to do the following: </p>
+<ul>
+<li>Read the analog value from <code>tempPin</code> using <code>analogRead</code> and store it in <code>adcValue</code>.</li>
+<li>Calculate the temperature using a formula and store it in temperature.</li>
+<li>Calculate the voltage using the ADC value and store it in <code>voltage</code>.</li>
+<li>Call the <code>tempIndicator</code> function to control the LED indicators based on the temperature.</li>
+<li>Print the <code>adcValue</code>, <code>temperature</code>, and <code>voltage</code> to the serial monitor for monitoring.</li>
+<li>Add a short <code>delay(500)</code> of 500 milliseconds for smoother display updates.</li>
+</ul>
+<pre><code class="language-c++">void loop()
+{
+    adcValue = analogRead(tempPin);  // Read the analog value from tempPin.
+    
+    // Calculate temperature and voltage based on the ADC reading.
+    temperature = ((adcValue * (5.0 / 1024 )) - 0.5) / 0.01;
+    voltage = (5.0 / 1024) * adcValue;
+    
+    // Call the tempIndicator function to control LED indicators.
+    tempIndicator(temperature);
+  
+    // Print ADC value, temperature, and voltage to the serial monitor.
+    Serial.print(&quot;ADC: &quot;);
+    Serial.print(adcValue);
+    Serial.print(&quot;  | Temp: &quot;);
+    Serial.print(temperature, 2);
+    Serial.print(&quot;  |  Voltage: &quot;);
+    Serial.print(voltage, 3);
+    Serial.println(&quot;V&quot;);
+    
+    delay(500);  // Add a short delay for smoother display updates.
+}
+</code></pre>
+<h2 id="5-tempindicator-function"><a class="header" href="#5-tempindicator-function">5. <code>tempIndicator()</code> Function:</a></h2>
+<p>The tempIndicator(temperature); placed in the loop() coded out above, functionality needs to be written. Outside the loop() functions final <code>}</code> create a new line and reproduce the following code:</p>
+<pre><code class="language-c++">void tempIndicator(float L_temp)
+{
+  // Control LEDs based on the temperature range.
+  if (L_temp &lt;= 5.0)
+  {
+    digitalWrite(redLED, LOW);
+    digitalWrite(orangeLED, LOW);
+    digitalWrite(greenLED, LOW);
+    digitalWrite(blueLED, HIGH);
+  }
+  else if (L_temp &gt; 5.0 &amp;&amp; L_temp &lt;= 20.0)
+  {
+    digitalWrite(redLED, LOW);
+    digitalWrite(orangeLED, LOW);
+    digitalWrite(greenLED, HIGH);
+    digitalWrite(blueLED, LOW);
+  }
+  else if (L_temp &gt; 20.0 &amp;&amp; L_temp &lt;= 30.0)
+  {
+    digitalWrite(redLED, LOW);
+    digitalWrite(orangeLED, HIGH);
+    digitalWrite(greenLED, LOW);
+    digitalWrite(blueLED, LOW);
+  }
+  else if (L_temp &gt; 30)
+  {
+    digitalWrite(redLED, HIGH);
+    digitalWrite(orangeLED, LOW);
+    digitalWrite(greenLED, LOW);
+    digitalWrite(blueLED, LOW);
+  }
+}
+</code></pre>
+<ul>
+<li>This function takes the calculated temperature as an argument <code>(L_temp)</code>.</li>
+<li>It uses a set of conditional statements to control the LEDs based on the temperature range:
+<ul>
+<li>If <code>L_temp</code> is less than or equal, <code>&lt;=</code>, to 5.0, it turns on the blue LED.</li>
+<li>If <code>L_temp</code>is between 5.0 and 20.0, <code>&gt;= &amp;&amp; &lt;=</code>, it turns on the green LED.</li>
+<li>If <code>L_temp</code> is between 20.0 and 30.0, <code>&gt;= &amp;&amp; &lt;=</code> ,it turns on the orange LED.</li>
+<li>If <code>L_temp</code> is greater than 30.0, <code>&gt;</code>, it turns on the red LED.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>More</strong></p>
+<blockquote>
+<ul>
+<li>Added four more lights to show granularity for the sensor readings</li>
+<li>to program this you will need more 4 more LEDs and Resistor pairs connected to the Arduino</li>
+<li>Repeart steps in the above to add more LEDs to the script, remember the varaibles must have unique names. 
+<code>tempIndicator()</code> needs more functionality so more <code>if</code> conditions to increment in steps of 8 between 0 and 45</li>
 </ul>
 </blockquote>
-<h2 id="1-design-an-alogrithm-or-flow-process-for-making-a-hot-drink"><a class="header" href="#1-design-an-alogrithm-or-flow-process-for-making-a-hot-drink">1. Design an alogrithm or flow process for making a hot drink</a></h2>
-<p><strong>The Code</strong></p>
-<pre><code class="language-mermaid">flowchart TD
-    start(Make a Cup of Tea)
-    stop(enjoy that cuppa?!)
-   
-    get_beverage_container[/Get Beverage Container/]
-    container_type{What type?}
-    mug[mug]
-    flask[flask]
-    teabag[/find tea bag \n and put in container/]
-    sugar{sugar?}
-   
-    get_kettle[/get the kettle/]
-    kettle_volume_check{is there enough \n water in the Kettle?}
-    fill_kettle[/fill the kettel \n to desired volume/]
-    turn_kettle_on[/Start to boil the water/]
-    boiled{has the kettle boiled}
-    start_pour[/decant kettle in to container/]
-    container_cap{is cup filled to \n desired volume}
-    end_pour[/stop pouring/]
-
-
-    start --&gt; get_beverage_container --&gt; container_type
-    container_type --&gt; mug
-    container_type --&gt; flask
-    mug &amp; flask --&gt; teabag --&gt; get_kettle --&gt; kettle_volume_check
-    kettle_volume_check -- no --&gt; fill_kettle --&gt; kettle_check
-    kettle_volume_check -- yes --&gt; turn_kettle_on --&gt; boiled
-    boiled -- no --&gt; boiled -- yes --&gt; start_pour
-    start_pour --&gt; container_cap -- no --&gt; container_cap -- yes --&gt; end_pour
-    end_pour --&gt; stir
-    turn_kettle_on --&gt; sugar -- no --&gt; stir --&gt; stop
-
-</code></pre>
-<p><strong>The Output</strong></p>
-<p><img src="./figures/mermaid-diagram.png" alt="" /></p>
+</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../Introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../ArduinoPWM/ArduinoPWM.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../ArduinoPWM/ArduinoPWM.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -241,13 +353,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../Introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../ArduinoPWM/ArduinoPWM.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../ArduinoPWM/ArduinoPWM.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
