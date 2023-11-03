@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Arduino Temperature - GEEN1064 Computing Exercises</title>
+        <title>Multi Coloured LED - GEEN1064 Computing Exercises</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../FlowChartsDiagrams/FlowChartsDiagrams.html"><strong aria-hidden="true">1.</strong> Flow Charts and Diagrams</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html"><strong aria-hidden="true">2.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../ArduinoTemperature/ArduinoTemperature.html" class="active"><strong aria-hidden="true">3.</strong> Arduino Temperature</a></li><li class="chapter-item expanded "><a href="../MulticolouredLED/MultiColouredLED.html"><strong aria-hidden="true">4.</strong> Multi Coloured LED</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Arduino 4-bit Binary Counter</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Arduino 8-bit Binary Counter</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Seven Segmented Diplay</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Motor Controller With Arduino</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../FlowChartsDiagrams/FlowChartsDiagrams.html"><strong aria-hidden="true">1.</strong> Flow Charts and Diagrams</a></li><li class="chapter-item expanded "><a href="../ArduinoPWM/ArduinoPWM.html"><strong aria-hidden="true">2.</strong> Arduino and Pulse Width Modulation</a></li><li class="chapter-item expanded "><a href="../ArduinoTemperature/ArduinoTemperature.html"><strong aria-hidden="true">3.</strong> Arduino Temperature</a></li><li class="chapter-item expanded "><a href="../MulticolouredLED/MultiColouredLED.html" class="active"><strong aria-hidden="true">4.</strong> Multi Coloured LED</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Arduino 4-bit Binary Counter</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Arduino 8-bit Binary Counter</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Seven Segmented Diplay</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Motor Controller With Arduino</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -146,7 +146,7 @@
                         <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/edit/master/content/ArduinoTemperature/ArduinoTemperature.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/teachingmaterial/GEEN1064_Exercises/edit/master/content/MulticolouredLED/MultiColouredLED.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -175,180 +175,182 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="arduino-temperature"><a class="header" href="#arduino-temperature">Arduino Temperature</a></h1>
-<h2 id="1-designing-the-circuit"><a class="header" href="#1-designing-the-circuit">1. Designing the circuit</a></h2>
-<ul>
-<li>
-<p>Connect your temperature sensor (e.g., a thermistor or any analog temperature sensor) to analog pin A0.</p>
-</li>
-<li>
-<p>Connect four LEDs (with appropriate current-limiting resistors) to digital pins 10, 11, 12, and 13 for blue, green, orange, and red, respectively.</p>
-<ul>
-<li>You can change the LEDs colour by clicking on it and change the colour </li>
-</ul>
-</li>
-<li>
-<p>The resistance value can be changed on the resistors by clicking them, set them to 220 </p>
-</li>
-<li>
-<p>Upload the code to your Arduino board using the Arduino IDE.</p>
-</li>
-<li>
-<p>Open the Serial Monitor in the Arduino IDE to view the ADC value, temperature, and voltage readings.</p>
-</li>
-<li>
-<p>Observe how the LEDs change based on the temperature range.</p>
-</li>
-<li>
-<p>This code provides a simple temperature monitoring system with visual LED indicators. The LEDs will change their state according to the detected temperature.</p>
-</li>
-</ul>
-<div align=center>
-<p><img src="figures/arduinoTempSetup.png" alt="" /></p>
-</div>
-<h2 id="2-define-constants-and-variables"><a class="header" href="#2-define-constants-and-variables">2. Define Constants and Variables</a></h2>
-<ul>
-<li>
-<p><code>const int tempPin = A0</code>: Specifies the analog pin (A0) where the temperature sensor is connected.</p>
-</li>
-<li>
-<p><code>const int redLED = 13, orangeLED = 12, greenLED = 11, blueLED = 10</code>: Define the digital pins for four LEDs.</p>
-</li>
-<li>
-<p><code>int adcValue;</code>, <code>float voltage, temperature;</code>: Variables to store the analog-to-digital converter (ADC) reading, voltage, and temperature values.</p>
-</li>
-</ul>
-<pre><code class="language-c++">const int tempPin = A0;
-const int redLED = 13, orangeLED = 12, greenLED = 11, blueLED = 10;
-int adcValue;
-float voltage, temperature;
-</code></pre>
-<h2 id="3--setup-function"><a class="header" href="#3--setup-function">3.  Setup Function:</a></h2>
-<ul>
-<li>
-<p>Set the <code>pinMode</code> for <code>tempPin</code> as <code>INPUT</code> since it's used to read the analog sensor.</p>
-</li>
-<li>
-<p>Set the <code>pinMode</code> for <code>redLED</code>, <code>orangeLED</code>, <code>greenLED</code>, and <code>blueLED</code> as <code>OUTPUT</code> to control the LEDs.</p>
-</li>
-<li>
-<p>Initialize the serial communication at a baud rate of 9600 to enable data logging and debugging.</p>
-</li>
-</ul>
-<pre><code class="language-c++">void setup()
+                        <h1 id="multi-coloured-led"><a class="header" href="#multi-coloured-led">Multi Coloured LED</a></h1>
+<h2 id="1-introduction"><a class="header" href="#1-introduction">1. Introduction</a></h2>
+<p>In today’s activity we will use an Arduino with and RGB LED to create a range of colours by using different PWM values via code.</p>
+<blockquote>
+<p>The primary tool for this project will be TinkerCad -&gt; <a href="https://www.tinkercad.com">https://www.tinkercad.com</a></p>
+</blockquote>
+<hr />
+<h2 id="2-some-theory"><a class="header" href="#2-some-theory">2. Some Theory...</a></h2>
+<p>Using an RGB LED you can produce other colors, you can combine these three colors in different intensities. To adjust the intensity of each LED you can use a PWM signal.</p>
+<p>Because the LEDs are very close to each other, our eyes see the result of the combination of colors, rather than the three colors individually.</p>
+<p>To have an idea on how to combine the colors, take a look at the following chart. This is the simplest color mixing chart, but gives you an idea how it works and how to produce different colors.</p>
+<p><img src="./figures/colourWheel.png" alt="" /></p>
+<h3 id="21-common-anode-and-common-cathode-rgb-leds"><a class="header" href="#21-common-anode-and-common-cathode-rgb-leds">2.1 Common Anode and Common Cathode RGB LEDs</a></h3>
+<p>There are two kinds of RGB LEDs: common anode LED and common cathode LED. The figure below illustrates a common anode and a common cathode LED.</p>
+<p><img src="./figures/cathode-anonde.png" alt="" /></p>
+<p>In a common cathode RGB LED, all three LEDs share a negative connection (cathode). In a common anode RGB LED, the three LEDs share a positive connection (anode).</p>
+<p>This results in an LED that has 4 pins, one for each LED, and one common cathode or one common anode.</p>
+<h3 id="22-rgb-led-pins"><a class="header" href="#22-rgb-led-pins">2.2 RGB LED Pins</a></h3>
+<p>RGB LEDs have four leads—one for each LED and another for the common anode or cathode. You can identify each lead by its length, as shown in the following figure.</p>
+<p><img src="./figures/cathode-anonde2.png" alt="" /></p>
+<p>With the LED facing you so the anode or cathode (the longest lead) is second from the left, the leads should be in the following order: red, anode or cathode, green, and blue.</p>
+<h2 id="2-circuit"><a class="header" href="#2-circuit">2. Circuit</a></h2>
+<p>Reproduce the following ciruit, using a cathode RGB LED and 3x 220 \(\Omega\) resistors.</p>
+<p><img src="./figures/RGB_LED.gif" alt="" /></p>
+<h2 id="3-code"><a class="header" href="#3-code">3. Code</a></h2>
+<p>Now you need to reporduce the following code:</p>
+<pre><code class="language-c++">// Define Pins
+#define bluePin 3
+#define greenPin 5
+#define redPin 6
+
+void setup()
+{ // setting the three defined pins as output
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin,OUTPUT);
+  // setting the pins to be Red On, green and blue Off
+  digitalWrite(redPin, HIGH);
+  digitalWrite(greenPin, LOW);
+  digitalWrite(bluePin, LOW);
+}
+
+void loop()
 {
-  pinMode(tempPin,INPUT);
-  
-  pinMode(redLED,OUTPUT);
-  pinMode(orangeLED,OUTPUT);
-  pinMode(greenLED,OUTPUT);
-  pinMode(blueLED,OUTPUT);
-  
-  Serial.begin(9600); // bits per second AKA Baud Rate
+  setColour(255, 0, 0);  // red
+  delay(1000); // wait a second
+  setColour(0, 255, 0);  // green
+  delay(1000);
+  setColour(0, 0, 255);  // blue
+  delay(1000);
+  setColour(255, 255, 0);  // yellow
+  delay(1000);  
+  setColour(80, 0, 80);  // purple
+  delay(1000);
+  setColour(0, 255, 255);  // aqua
+  delay(1000);
+}
+
+// takes three integers, for red, green and blue uses 
+// the analogWrite function on each pin to change the colour based
+// on those supplied values.
+void setColour(int red, int green, int blue)
+{
+  analogWrite(redPin, red);
+  analogWrite(greenPin, green);
+  analogWrite(bluePin, blue);  
 }
 </code></pre>
-<h2 id="4-loop-function"><a class="header" href="#4-loop-function">4. Loop Function:</a></h2>
-<p>To code the loop function you need to do the following: </p>
-<ul>
-<li>Read the analog value from <code>tempPin</code> using <code>analogRead</code> and store it in <code>adcValue</code>.</li>
-<li>Calculate the temperature using a formula and store it in temperature.</li>
-<li>Calculate the voltage using the ADC value and store it in <code>voltage</code>.</li>
-<li>Call the <code>tempIndicator</code> function to control the LED indicators based on the temperature.</li>
-<li>Print the <code>adcValue</code>, <code>temperature</code>, and <code>voltage</code> to the serial monitor for monitoring.</li>
-<li>Add a short <code>delay(500)</code> of 500 milliseconds for smoother display updates.</li>
-</ul>
+<p>Run the code see how the RGB transistions between different colours. </p>
+<p>You can change the colour of the LED by setting the values of <code>setColour(int red, int green, int blue)</code> ie <code>setColour(10,50,200)</code> and see what produces. Remember <strong>Only</strong> the code in the <code>void loop(){...}</code> happens continously so this where you'd add extra colours. </p>
+<p>Consider modifying the <code>delay()</code> arguments to see if you can get different speeds. <code>delay(1000)</code> is one second, <code>delay(10)</code> is 0.010 seconds and so on.</p>
+<h2 id="4-16-million-colours"><a class="header" href="#4-16-million-colours">4. 16 Million Colours...</a></h2>
+<p>So now you have a basic colour shifter, you can go a head a programme all 16 million colours, manually... you have 5 minuets!</p>
+<p>Actually, what you are going to do is automate this using a bit of maths and conditioning. </p>
+<p>First off underneath the line that says <code>#define redPin 6</code> you need to added the following to define some variables that will be used to make this possible.</p>
+<pre><code class="language-c++">#define redPin 6
+
+//variables to hold our colour intensities and direction
+//and define some initial &quot;random&quot; values to seed it
+int red             = 254;
+int green           = 1;
+int blue            = 127;
+int red_direction   = -1;
+int green_direction = 1;
+int blue_direction  = -1;
+</code></pre>
+<p>Now you are to replace the code within side the <code>void loop(){...}</code></p>
 <pre><code class="language-c++">void loop()
 {
-    adcValue = analogRead(tempPin);  // Read the analog value from tempPin.
-    
-    // Calculate temperature and voltage based on the ADC reading.
-    temperature = ((adcValue * (5.0 / 1024 )) - 0.5) / 0.01;
-    voltage = (5.0 / 1024) * adcValue;
-    
-    // Call the tempIndicator function to control LED indicators.
-    tempIndicator(temperature);
+  red = red + red_direction;   //changing values of LEDs
+  green = green + green_direction;
+  blue = blue + blue_direction;
+
+}
+</code></pre>
+<p>Explanation: </p>
+<ul>
+<li><code>red</code> currently holds the value <code>254</code></li>
+<li>likewise <code>red_direction</code>  holds <code>-1</code></li>
+<li>\(\therefore \) <code>red = red + red-direction</code> \(\Rightarrow\)<code>253 = 254 + -1</code></li>
+</ul>
+<p>Continue with adding code underneath <code>blue = blue + blue_direction</code>:</p>
+<pre><code class="language-c++">
+  blue = blue + blue_direction
   
-    // Print ADC value, temperature, and voltage to the serial monitor.
-    Serial.print(&quot;ADC: &quot;);
-    Serial.print(adcValue);
-    Serial.print(&quot;  | Temp: &quot;);
-    Serial.print(temperature, 2);
-    Serial.print(&quot;  |  Voltage: &quot;);
-    Serial.print(voltage, 3);
-    Serial.println(&quot;V&quot;);
-    
-    delay(500);  // Add a short delay for smoother display updates.
+ 
+  //now change direction for each color if it reaches 255
+  if (red &gt;= 255 || red &lt;= 0)
+  {
+    red_direction = red_direction * -1;
+  }
+  if (green &gt;= 255 || green &lt;= 0)
+  {
+    green_direction = green_direction * -1;
+  }
+  if (blue &gt;= 255 || blue &lt;= 0)
+  {
+    blue_direction = blue_direction * -1;
+  }
+
+  setColour(red, green, blue);
+  delay(100);    //a little delay is needed so you can see the change
+
 }
 </code></pre>
-<h2 id="5-tempindicator-function"><a class="header" href="#5-tempindicator-function">5. <code>tempIndicator()</code> Function:</a></h2>
-<p>The tempIndicator(temperature); placed in the loop() coded out above, functionality needs to be written. Outside the loop() functions final <code>}</code> create a new line and reproduce the following code:</p>
-<pre><code class="language-c++">void tempIndicator(float L_temp)
-{
-  // Control LEDs based on the temperature range.
-  if (L_temp &lt;= 5.0)
-  {
-    digitalWrite(redLED, LOW);
-    digitalWrite(orangeLED, LOW);
-    digitalWrite(greenLED, LOW);
-    digitalWrite(blueLED, HIGH);
-  }
-  else if (L_temp &gt; 5.0 &amp;&amp; L_temp &lt;= 20.0)
-  {
-    digitalWrite(redLED, LOW);
-    digitalWrite(orangeLED, LOW);
-    digitalWrite(greenLED, HIGH);
-    digitalWrite(blueLED, LOW);
-  }
-  else if (L_temp &gt; 20.0 &amp;&amp; L_temp &lt;= 30.0)
-  {
-    digitalWrite(redLED, LOW);
-    digitalWrite(orangeLED, HIGH);
-    digitalWrite(greenLED, LOW);
-    digitalWrite(blueLED, LOW);
-  }
-  else if (L_temp &gt; 30)
-  {
-    digitalWrite(redLED, HIGH);
-    digitalWrite(orangeLED, LOW);
-    digitalWrite(greenLED, LOW);
-    digitalWrite(blueLED, LOW);
-  }
-}
-</code></pre>
+<p>Explanation:</p>
+<ol>
+<li>
+<p><code>if (red &gt;= 255 || red &lt;= 0)</code> </p>
 <ul>
-<li>This function takes the calculated temperature as an argument <code>(L_temp)</code>.</li>
-<li>It uses a set of conditional statements to control the LEDs based on the temperature range:
-<ul>
-<li>If <code>L_temp</code> is less than or equal, <code>&lt;=</code>, to 5.0, it turns on the blue LED.</li>
-<li>If <code>L_temp</code>is between 5.0 and 20.0, <code>&gt;= &amp;&amp; &lt;=</code>, it turns on the green LED.</li>
-<li>If <code>L_temp</code> is between 20.0 and 30.0, <code>&gt;= &amp;&amp; &lt;=</code> ,it turns on the orange LED.</li>
-<li>If <code>L_temp</code> is greater than 30.0, <code>&gt;</code>, it turns on the red LED.</li>
+<li>the conitional statement checks first to see if the variable <code>red</code> is greater than or equal to <code>&gt;=</code> <code>255</code>.</li>
 </ul>
 </li>
-</ul>
+<li>
+<p>the symbols <code>||</code> is the the pipe key twice <code>|</code> usually next to the <code>z</code> key on UK keyboards. This means logical <strong>OR</strong>, that is to say that either side of this comparsion check must evaluate as <code>true</code> in order to execute the code in it's block.</p>
+</li>
+<li>
+<p>the other side shows that <code>red</code> is less than or equal  <code>&lt;=</code> to <code>0</code></p>
+</li>
+</ol>
 <blockquote>
-<p><strong>More</strong></p>
+<p><strong>Note:</strong>
+&gt;</p>
 <blockquote>
+<p>Remember that we are using the Pulse width modulation(PWM) pins of the Arduino. The PWM pins (~6,~5 and ~3) out put a signal from 0-255 is mapped to 0v and 5v.
+<img src="./figures/analogWrite_ruler.png" alt="" /></p>
+</blockquote>
+</blockquote>
+<ol start="4">
+<li>
+<p><code>red_direction = red_direction * -1;</code></p>
 <ul>
-<li>Added four more lights to show granularity for the sensor readings</li>
-<li>to program this you will need more 4 more LEDs and Resistor pairs connected to the Arduino</li>
-<li>Repeart steps in the above to add more LEDs to the script, remember the varaibles must have unique names. 
-<code>tempIndicator()</code> needs more functionality so more <code>if</code> conditions to increment in steps of 8 between 0 and 45</li>
+<li>is interesting right? It's a little maths that changes the direction by which the <code>red</code> changes (increments/decrements).</li>
+<li>the first time \(\Rightarrow 1 = (-1) * (-1) \) </li>
+<li>the second time \(\Rightarrow -1 = (1) * (-1) \) </li>
+<li>the third time \(\Rightarrow 1 = (-1) * (-1) \) </li>
+<li>the forth time \(\Rightarrow -1 = (1) * (-1) \) </li>
+<li>and so on... </li>
 </ul>
-</blockquote>
-</blockquote>
+</li>
+<li>
+<p>the same for <code>green</code> and <code>blue</code></p>
+</li>
+<li>
+<p>Currently the <code>delay</code> is set to 5ms, try to experiment with this from 0 to 1000 and see if you can see all 16 million shades?!?!</p>
+</li>
+</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../ArduinoPWM/ArduinoPWM.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../ArduinoTemperature/ArduinoTemperature.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../MulticolouredLED/MultiColouredLED.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -356,13 +358,10 @@ float voltage, temperature;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../ArduinoPWM/ArduinoPWM.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../ArduinoTemperature/ArduinoTemperature.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../MulticolouredLED/MultiColouredLED.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
