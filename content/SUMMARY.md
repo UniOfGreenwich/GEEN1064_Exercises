@@ -7,7 +7,7 @@
 
 ---------
 
-- [Arduino 4-bit Binary Counter]()
-- [Arduino 8-bit Binary Counter]()
+- [Arduino 4-bit Binary Counter](./Arduino4BitBinaryCouter/Arduino4BitBinaryCouter.md)
+- [Arduino 8-bit Binary Counter](./Arduino8BitBinaryCounter/Ardunino8BitBinaryCounter.md)
 - [Seven Segmented Diplay]()
 - [Motor Controller With Arduino]() 
