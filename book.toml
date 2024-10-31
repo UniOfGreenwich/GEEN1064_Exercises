@@ -7,8 +7,8 @@ src = "content"
 
 [output.html]
 mathjax-support = true
-git-repository-url = "https://github.com/teachingmaterial/GEEN1064_Exercises/"
-edit-url-template = "https://github.com/teachingmaterial/GEEN1064_Exercises/edit/master/{path}"
+git-repository-url = "https://github.com/uniofgreenwich/GEEN1064_Exercises/"
+edit-url-template = "https://github.com/uniofgreenwich/GEEN1064_Exercises/edit/master/{path}"
 input-404 = "404/404.md"
 
 [output.html.print]
