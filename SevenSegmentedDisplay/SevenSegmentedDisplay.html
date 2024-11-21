@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Arduino Temperature - GEEN1064 Computing Exercises</title>
+        <title>Seven Segmented Diplay - GEEN1064 Computing Exercises</title>
 
 
         <!-- Custom HTML head -->
@@ -135,7 +135,7 @@
                         <a href="https://github.com/uniofgreenwich/GEEN1064_Exercises/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/uniofgreenwich/GEEN1064_Exercises/edit/main/content/ArduinoTemperature/ArduinoTemperature.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/uniofgreenwich/GEEN1064_Exercises/edit/main/content/SevenSegmentedDisplay/SevenSegmentedDisplay.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -164,179 +164,137 @@
 
                 <div id="content" class="content">
                     <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
-                        <h1 id="arduino-temperature"><a class="header" href="#arduino-temperature">Arduino Temperature</a></h1>
-<h2 id="1-designing-the-circuit"><a class="header" href="#1-designing-the-circuit">1. Designing the circuit</a></h2>
-<ul>
-<li>
-<p>Connect your temperature sensor (e.g., a thermistor or any analog temperature sensor) to analog pin A0.</p>
-</li>
-<li>
-<p>Connect four LEDs (with appropriate current-limiting resistors) to digital pins 10, 11, 12, and 13 for blue, green, orange, and red, respectively.</p>
-<ul>
-<li>You can change the LEDs colour by clicking on it and change the colour</li>
-</ul>
-</li>
-<li>
-<p>The resistance value can be changed on the resistors by clicking them, set them to 220</p>
-</li>
-<li>
-<p>Upload the code to your Arduino board using the Arduino IDE.</p>
-</li>
-<li>
-<p>Open the Serial Monitor in the Arduino IDE to view the ADC value, temperature, and voltage readings.</p>
-</li>
-<li>
-<p>Observe how the LEDs change based on the temperature range.</p>
-</li>
-<li>
-<p>This code provides a simple temperature monitoring system with visual LED indicators. The LEDs will change their state according to the detected temperature.</p>
-</li>
-</ul>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>In today’s activity we will use an Arduino to drive  seven segmented display with C/C++ code.</p>
+<blockquote>
+<p>The primary tool for this project will be TinkerCad -&gt; https://www.tinkercad.com</p>
+</blockquote>
+<h2 id="setting-up-the-circuit"><a class="header" href="#setting-up-the-circuit">Setting up the Circuit</a></h2>
+<p>Once loaded login to TinkerCad and then click on \menu{Circuits &gt; Create new Circuit}.</p>
+<p>Change the circuit name, located top-left hand side of the screen to <strong>Seven__Segment_Display</strong>.</p>
+<p>Next you need to add an Arduino Uno and a breadboard that need to be connected together from the 5V and GND pins of the Arduino to the power and ground rails of the breadboard.</p>
+<p>This can be achieved by either selecting the Arduino Uno and the breadboard from <strong>Components</strong> &gt; <strong>Basic</strong> components or by changing <strong>Components</strong> &gt; <strong>Basic</strong> to <strong>Components</strong> &gt; <strong>Starter</strong> and choosing Arduino Uno and the Breadboard starter. Please refer to image below.</p>
 <div align=center>
-<p><img src="figures/arduinoTempSetup.png" alt="" /></p>
+<p><img src="./figures/step1.png" alt="" /></p>
 </div>
-<h2 id="2-define-constants-and-variables"><a class="header" href="#2-define-constants-and-variables">2. Define Constants and Variables</a></h2>
+<p>You now need to add:</p>
 <ul>
-<li>
-<p><code>const int tempPin = A0</code>: Specifies the analog pin (A0) where the temperature sensor is connected.</p>
-</li>
-<li>
-<p><code>const int redLED = 13, orangeLED = 12, greenLED = 11, blueLED = 10</code>: Define the digital pins for four LEDs.</p>
-</li>
-<li>
-<p><code>int adcValue;</code>, <code>float voltage, temperature;</code>: Variables to store the analog-to-digital converter (ADC) reading, voltage, and temperature values.</p>
-</li>
+<li>1 x 7 Segment Display, <strong>Components</strong> &gt; <strong>Other Components</strong> or alternatively use the search box</li>
+<li>1 x resistor, set at \(1k\Omega\) or \(1000\Omega\), <strong>Components</strong> &gt; <strong>Basic</strong> first component in the list.</li>
 </ul>
-<pre><code class="language-c++">const int tempPin = A0;
-const int redLED = 13, orangeLED = 12, greenLED = 11, blueLED = 10;
-int adcValue;
-float voltage, temperature;
-</code></pre>
-<h2 id="3--setup-function"><a class="header" href="#3--setup-function">3.  Setup Function:</a></h2>
-<ul>
-<li>
-<p>Set the <code>pinMode</code> for <code>tempPin</code> as <code>INPUT</code> since it's used to read the analog sensor.</p>
-</li>
-<li>
-<p>Set the <code>pinMode</code> for <code>redLED</code>, <code>orangeLED</code>, <code>greenLED</code>, and <code>blueLED</code> as <code>OUTPUT</code> to control the LEDs.</p>
-</li>
-<li>
-<p>Initialize the serial communication at a baud rate of 9600 to enable data logging and debugging.</p>
-</li>
-</ul>
-<pre><code class="language-c++">void setup()
+<p>See below for the circuit set up:</p>
+<table>
+<tr>
+<td>
+<p><img src="./figures/step2.png" alt="" /></p>
+</td>
+<td>
+<p><img src="./figures/step6.png" alt="" /></p>
+</td>
+</tr>
+</table>
+<h2 id="programming-the-circuit"><a class="header" href="#programming-the-circuit">Programming the Circuit</a></h2>
+<p>Once you have completed the circuit you will need to programme the Arduino Uno.  Located above the <strong>Components</strong> click the <strong>Code</strong> &gt; <strong>Text</strong>. Once the sketch has appeared reproduce the following code:</p>
+<pre><code class="language-C++">void setup()
 {
-  pinMode(tempPin,INPUT);
-  
-  pinMode(redLED,OUTPUT);
-  pinMode(orangeLED,OUTPUT);
-  pinMode(greenLED,OUTPUT);
-  pinMode(blueLED,OUTPUT);
-  
-  Serial.begin(9600); // bits per second AKA Baud Rate
-}
-</code></pre>
-<h2 id="4-loop-function"><a class="header" href="#4-loop-function">4. Loop Function:</a></h2>
-<p>To code the loop function you need to do the following:</p>
-<ul>
-<li>Read the analog value from <code>tempPin</code> using <code>analogRead</code> and store it in <code>adcValue</code>.</li>
-<li>Calculate the temperature using a formula and store it in temperature.</li>
-<li>Calculate the voltage using the ADC value and store it in <code>voltage</code>.</li>
-<li>Call the <code>tempIndicator</code> function to control the LED indicators based on the temperature.</li>
-<li>Print the <code>adcValue</code>, <code>temperature</code>, and <code>voltage</code> to the serial monitor for monitoring.</li>
-<li>Add a short <code>delay(500)</code> of 500 milliseconds for smoother display updates.</li>
-</ul>
-<pre><code class="language-c++">void loop()
-{
-    adcValue = analogRead(tempPin);  // Read the analog value from tempPin.
-    
-    // Calculate temperature and voltage based on the ADC reading.
-    temperature = ((adcValue * (5.0 / 1024 )) - 0.5) / 0.01;
-    voltage = (5.0 / 1024) * adcValue;
-    
-    // Call the tempIndicator function to control LED indicators.
-    tempIndicator(temperature);
-  
-    // Print ADC value, temperature, and voltage to the serial monitor.
-    Serial.print("ADC: ");
-    Serial.print(adcValue);
-    Serial.print("  | Temp: ");
-    Serial.print(temperature, 2);
-    Serial.print("  |  Voltage: ");
-    Serial.print(voltage, 3);
-    Serial.println("V");
-    
-    delay(500);  // Add a short delay for smoother display updates.
-}
-</code></pre>
-<h2 id="5-tempindicator-function"><a class="header" href="#5-tempindicator-function">5. <code>tempIndicator()</code> Function:</a></h2>
-<p>The tempIndicator(temperature); placed in the loop() coded out above, functionality needs to be written. Outside the loop() functions final <code>}</code> create a new line and reproduce the following code:</p>
-<pre><code class="language-c++">void tempIndicator(float L_temp)
-{
-  // Control LEDs based on the temperature range.
-  if (L_temp &lt;= 5.0)
-  {
-    digitalWrite(redLED, LOW);
-    digitalWrite(orangeLED, LOW);
-    digitalWrite(greenLED, LOW);
-    digitalWrite(blueLED, HIGH);
-  }
-  else if (L_temp &gt; 5.0 &amp;&amp; L_temp &lt;= 20.0)
-  {
-    digitalWrite(redLED, LOW);
-    digitalWrite(orangeLED, LOW);
-    digitalWrite(greenLED, HIGH);
-    digitalWrite(blueLED, LOW);
-  }
-  else if (L_temp &gt; 20.0 &amp;&amp; L_temp &lt;= 30.0)
-  {
-    digitalWrite(redLED, LOW);
-    digitalWrite(orangeLED, HIGH);
-    digitalWrite(greenLED, LOW);
-    digitalWrite(blueLED, LOW);
-  }
-  else if (L_temp &gt; 30)
-  {
-    digitalWrite(redLED, HIGH);
-    digitalWrite(orangeLED, LOW);
-    digitalWrite(greenLED, LOW);
-    digitalWrite(blueLED, LOW);
-  }
-}
-</code></pre>
-<ul>
-<li>This function takes the calculated temperature as an argument <code>(L_temp)</code>.</li>
-<li>It uses a set of conditional statements to control the LEDs based on the temperature range:
-<ul>
-<li>If <code>L_temp</code> is less than or equal, <code>&lt;=</code>, to 5.0, it turns on the blue LED.</li>
-<li>If <code>L_temp</code>is between 5.0 and 20.0, <code>&gt;= &amp;&amp; &lt;=</code>, it turns on the green LED.</li>
-<li>If <code>L_temp</code> is between 20.0 and 30.0, <code>&gt;= &amp;&amp; &lt;=</code> ,it turns on the orange LED.</li>
-<li>If <code>L_temp</code> is greater than 30.0, <code>&gt;</code>, it turns on the red LED.</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>More</strong></p>
-<blockquote>
-<ul>
-<li>Added four more lights to show granularity for the sensor readings</li>
-<li>to program this you will need more 4 more LEDs and Resistor pairs connected to the Arduino</li>
-<li>Repeart steps in the above to add more LEDs to the script, remember the varaibles must have unique names.
-<code>tempIndicator()</code> needs more functionality so more <code>if</code> conditions to increment in steps of 8 between 0 and 45</li>
-</ul>
-</blockquote>
-</blockquote>
 
+}
+
+void loop()
+{
+
+}
+
+</code></pre>
+<p>Now you are ready to set up all the Sketch up as follows.</p>
+<pre><code class="language-C++">int a = 12;
+int b = 13;
+int c = 7;
+int d = 8;
+int e = 9;
+int f = 11;
+int g = 10;
+int dp = 6;
+
+void setup()
+{
+
+}
+
+void loop()
+{
+
+}
+</code></pre>
+<p>Firstly the variables are declared and initialised using the <code>int</code> keyword.</p>
+<p>Lines 1 to 8, define the variables <code>int a</code> through to <code>int g</code> and then lastly <code>int dp</code> which are the pin names for the seven segment display (SSD) component. We have assigned the integers 13 to 6 which are the pins on the Arduino that we are going to use to drive the SSD.</p>
+<blockquote>
+<p>TODO:</p>
+<p>Add inline comment on line 1 to summaries the description above so that it explains what this section of code is, using the <code>//</code> comment symbols.</p>
+</blockquote>
+<p>The <code>void setup()</code> will be used to set the pin modes and initialise the serial.</p>
+<pre><code class="language-C++">void setup()
+{
+  pinMode(a,OUTPUT);
+  pinMode(b,OUTPUT);
+  pinMode(c,OUTPUT);
+  pinMode(d,OUTPUT);
+  pinMode(e,OUTPUT);
+  pinMode(f,OUTPUT);
+  pinMode(g,OUTPUT);
+  pinMode(dp,OUTPUT);
+}
+</code></pre>
+<p>For each variable (<code>a</code> ... <code>g}</code>and <code>dp</code>) we have to specify how the pin on the Arduino behaves, in this case we are setting them as outputs, <code>pinMode(a,OUTPUT);</code>.</p>
+<blockquote>
+<p>TODO:</p>
+<p>Add inline comment on lines 12 to describe the purpose of this block of code, hint I have mentioned this above, remember <code>//</code> are the comment symbols.</p>
+</blockquote>
+<p>The <code>void loop()</code>, function contains code that will run forever.</p>
+<p>Write out the following code:</p>
+<pre><code class="language-C++">void loop()
+{
+  digitalWrite(a, HIGH);
+  digitalWrite(b, HIGH);
+  digitalWrite(c, HIGH);
+  digitalWrite(d, HIGH);
+  digitalWrite(e, HIGH);
+  digitalWrite(f, HIGH);
+  digitalWrite(g, HIGH);
+  digitalWrite(dp,HIGH);
+  delay(1000);                           //
+  digitalWrite(a, LOW);
+  digitalWrite(b, LOW);
+  digitalWrite(c, LOW);
+  digitalWrite(d, LOW);
+  digitalWrite(e, LOW);
+  digitalWrite(f, LOW);
+  digitalWrite(g, HIGH);
+  delay(1000);                           //
+}
+</code></pre>
+<p>Notice that to control the pin we use the function <code>digitalWrite(pinNumber,KEYWORD)</code>. Pins in the <code>OUTPUT</code> mode can only be <code>HIGH</code> or <code>LOW</code> to represent voltage on or off. We can see that line 24 sets the pin <code>12</code> or <code>a</code> is set as <code>HIGH</code>, this is because we are using the anode setup of the SSD and therefore we use the inverse. See the diagrams for anode and cathode circuity.</p>
+<div align=center>
+<p><img src="./figures/step4.png" alt="" /></p>
+<p><img src="./figures/step5.png" alt="" /></p>
+</div>
+<p>If you where to run the circuit now you should see after one second the number 0 displayed and then nothing for a second and so forth. This is because we are waiting 1 second before change the pins' output, <code>delay(1000);</code> where 1000 is in milliseconds.</p>
+<blockquote>
+<p>TODO:</p>
+<ul>
+<li>Using the image below as reference try to generate 0 - 9 then A,b,C,d,E,F and finally the decimal point(dp). You have the skeleton code do this, copy and paste line 33 to line 40 on line 41 and repeat.</li>
+</ul>
+</blockquote>
+<div align=center>
+<p><img src="./figures/step6.png" alt="" /></p>
+</div>
                     </main>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../RoboticArmDocumentation/RoboticArmSDKDocumentation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../ArduinoTemperature/ArduinoTemperature.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -344,13 +302,10 @@ float voltage, temperature;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../RoboticArmDocumentation/RoboticArmSDKDocumentation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../ArduinoTemperature/ArduinoTemperature.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../SevenSegmentedDisplay/SevenSegmentedDisplay.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
