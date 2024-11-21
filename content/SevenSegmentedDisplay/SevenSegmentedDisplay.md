@@ -25,11 +25,20 @@ You now need to add:
 
 See below for the circuit set up:
 
-<div align=center>
+<table>
+<tr>
+<td>
 
 ![](./figures/step2.png)
 
-</div>
+</td>
+<td>
+
+ ![](./figures/step6.png)
+
+</td>
+</tr>
+</table>
 
 ## Programming the Circuit
 

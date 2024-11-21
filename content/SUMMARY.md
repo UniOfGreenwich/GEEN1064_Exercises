@@ -15,10 +15,10 @@
 
 # Tinkercad 
 - [Arduino Temperature](./ArduinoTemperature/ArduinoTemperature.md)
+- [Seven Segmented Diplay](./SevenSegmentedDisplay/SevenSegmentedDisplay.md)
 - [Arduino and Pulse Width Modulation]()
 - [Multi Coloured LED]()
 - [Arduino 4-bit Binary Counter]()
 - [Arduino 8-bit Binary Counter]()
-- [Seven Segmented Diplay]()
-- [Motor Controller With Arduino](./MotorController/MotorController.md) 
+- [Motor Controller With Arduino]() 
 
