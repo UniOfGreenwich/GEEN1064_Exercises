@@ -28,7 +28,11 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -223,20 +227,50 @@
 </blockquote>
 <h2 id="functions-documentation"><a class="header" href="#functions-documentation">Functions Documentation:</a></h2>
 <h3 id="function-void-initialiseroboticarm"><a class="header" href="#function-void-initialiseroboticarm">Function: <code>void initialiseRoboticArm()</code></a></h3>
+<div id="admonition-code" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-title">
+<div class="admonition-title">
+<div id="admonition-code-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code"></a>
+</div>
+<div>
 <pre><code class="language-c">void initialiseRoboticArm()
 </code></pre>
+</div>
+</div>
 <h4 id="important"><a class="header" href="#important">Important:</a></h4>
 <p><code>initialiseRoboticArm</code> invokes the <code>roboticArmBegin()</code> function and displays operational information to user via the command line</p>
 <hr />
 <h3 id="function-void-homeposition"><a class="header" href="#function-void-homeposition">Function: <code>void homePosition()</code></a></h3>
+<div id="admonition-code-1" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-1-title">
+<div class="admonition-title">
+<div id="admonition-code-1-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-1"></a>
+</div>
+<div>
 <pre><code class="language-c">void homePosition()
 </code></pre>
+</div>
+</div>
 <h3 id="important-1"><a class="header" href="#important-1">Important</a></h3>
 <p>This function sets arm to the home position.</p>
 <hr />
 <h3 id="function-void-printposition"><a class="header" href="#function-void-printposition">Function: <code>void printPosition()</code></a></h3>
+<div id="admonition-code-2" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-2-title">
+<div class="admonition-title">
+<div id="admonition-code-2-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-2"></a>
+</div>
+<div>
 <pre><code class="language-c">void printPosition()
 </code></pre>
+</div>
+</div>
 <h3 id="important-2"><a class="header" href="#important-2">Important</a></h3>
 <p>This function gets the lastest servo position provided by the user.</p>
 <hr />
@@ -245,8 +279,18 @@
 <p>Braccio initialization and set intial position. Modifing this function you can set up the initial position of all the servo motors of Braccio.</p>
 <hr />
 <h3 id="function--void-roboticarmmovementint-stepdelay-int-vbase-int-vshoulder-int-velbow-int-vwrist_ver-int-vwrist_rot-int-vgripper"><a class="header" href="#function--void-roboticarmmovementint-stepdelay-int-vbase-int-vshoulder-int-velbow-int-vwrist_ver-int-vwrist_rot-int-vgripper">Function : <code>void roboticArmMovement(int stepDelay, int vBase, int vShoulder, int vElbow, int vWrist_ver, int vWrist_rot, int vgripper)</code></a></h3>
+<div id="admonition-code-3" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-3-title">
+<div class="admonition-title">
+<div id="admonition-code-3-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-3"></a>
+</div>
+<div>
 <pre><code class="language-c">void roboticArmMovement(int stepDelay, int vBase, int vShoulder, int vElbow, int vWrist_ver, int vWrist_rot, int vgripper)
 </code></pre>
+</div>
+</div>
 <h3 id="important-4"><a class="header" href="#important-4">Important:</a></h3>
 <p>This functions allows you to control all the servo motors. Function moves the servos in the following order:</p>
 <ul>
@@ -278,14 +322,34 @@
 </ul>
 <hr />
 <h3 id="function-void-processcommand"><a class="header" href="#function-void-processcommand">Function: <code>void processCommand()</code></a></h3>
+<div id="admonition-code-4" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-4-title">
+<div class="admonition-title">
+<div id="admonition-code-4-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-4"></a>
+</div>
+<div>
 <pre><code class="language-c">void processCommand()
 </code></pre>
+</div>
+</div>
 <h4 id="important-5"><a class="header" href="#important-5">Important:</a></h4>
 <p><code>processCommand</code> actions the <code>String l_Command</code> by finding the indentifier and then the angle ie B60</p>
 <hr />
 <h3 id="function-int-whichmotorstring-l_command-string-l_motor"><a class="header" href="#function-int-whichmotorstring-l_command-string-l_motor">Function: <code>int whichMotor(String l_Command, String l_Motor)</code></a></h3>
+<div id="admonition-code-5" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-5-title">
+<div class="admonition-title">
+<div id="admonition-code-5-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-5"></a>
+</div>
+<div>
 <pre><code class="language-c">int whichMotor(String l_Command, String l_Motor)
 </code></pre>
+</div>
+</div>
 <p>Indetifies the supplied motor to move by searching the String Command and checking against the input motor</p>
 <h4 id="important-6"><a class="header" href="#important-6">Important:</a></h4>
 <p>Indetifies the supplied motor to move by searching the String Command and checking against the input motor</p>
@@ -304,8 +368,18 @@
 </ul>
 <hr />
 <h3 id="function-void-moveservoservo-servo-int-currentposition-int-targetposition-int-stepdelay-int-minposition-int-maxposition-const-char-servoname"><a class="header" href="#function-void-moveservoservo-servo-int-currentposition-int-targetposition-int-stepdelay-int-minposition-int-maxposition-const-char-servoname">Function: <code>void moveServo(Servo &amp;servo, int &amp;currentPosition, int targetPosition, int stepDelay, int minPosition, int maxPosition, const char *servoName)</code></a></h3>
+<div id="admonition-code-6" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-6-title">
+<div class="admonition-title">
+<div id="admonition-code-6-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-6"></a>
+</div>
+<div>
 <pre><code class="language-c">void moveServo(Servo &amp;servo, int &amp;currentPosition, int targetPosition, int stepDelay, int minPosition, int maxPosition, const char *servoName)
 </code></pre>
+</div>
+</div>
 <p><strong>Moves a servo to a specified target position with controlled delay and position constraints.</strong></p>
 <p><em>Parameters:</em></p>
 <ul>
@@ -333,8 +407,18 @@
 </ul>
 <hr />
 <h3 id="function-void-movebaseint-stepdelay-int-vbase"><a class="header" href="#function-void-movebaseint-stepdelay-int-vbase">Function: <code>void moveBase(int stepDelay, int vBase)</code></a></h3>
+<div id="admonition-code-7" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-7-title">
+<div class="admonition-title">
+<div id="admonition-code-7-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-7"></a>
+</div>
+<div>
 <pre><code class="language-c">void moveBase(int stepDelay, int vBase)
 </code></pre>
+</div>
+</div>
 <p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
 <p><em>Parameters:</em></p>
 <ul>
@@ -347,8 +431,18 @@
 </ul>
 <hr />
 <h3 id="function-void-moveshoulderint-stepdelay-int-vshoulder"><a class="header" href="#function-void-moveshoulderint-stepdelay-int-vshoulder">Function: <code>void moveShoulder(int stepDelay, int vShoulder)</code></a></h3>
+<div id="admonition-code-8" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-8-title">
+<div class="admonition-title">
+<div id="admonition-code-8-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-8"></a>
+</div>
+<div>
 <pre><code class="language-c">void moveShoulder(int stepDelay, int vShoulder)
 </code></pre>
+</div>
+</div>
 <p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
 <p><em>Parameters:</em></p>
 <ul>
@@ -361,8 +455,18 @@
 </ul>
 <hr />
 <h3 id="function-void-moveelbowint-stepdelay-int-velbow"><a class="header" href="#function-void-moveelbowint-stepdelay-int-velbow">Function: <code>void moveElbow(int stepDelay, int vElbow)</code></a></h3>
+<div id="admonition-code-9" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-9-title">
+<div class="admonition-title">
+<div id="admonition-code-9-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-9"></a>
+</div>
+<div>
 <pre><code class="language-c">void moveElbow(int stepDelay, int vElbow)
 </code></pre>
+</div>
+</div>
 <p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
 <p><em>Parameters:</em></p>
 <ul>
@@ -375,8 +479,18 @@
 </ul>
 <hr />
 <h3 id="function-void-movewrist_verint-stepdelay-int-vwrist_ver"><a class="header" href="#function-void-movewrist_verint-stepdelay-int-vwrist_ver">Function: <code>void moveWrist_Ver(int stepDelay, int vWrist_Ver)</code></a></h3>
+<div id="admonition-code-10" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-10-title">
+<div class="admonition-title">
+<div id="admonition-code-10-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-10"></a>
+</div>
+<div>
 <pre><code class="language-c">void moveWrist_Ver(int stepDelay, int vWrist_Ver)
 </code></pre>
+</div>
+</div>
 <p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
 <p><em>Parameters:</em></p>
 <ul>
@@ -389,8 +503,18 @@
 </ul>
 <hr />
 <h3 id="function-void-movewrist_rotint-stepdelay-int-vwrist_rot"><a class="header" href="#function-void-movewrist_rotint-stepdelay-int-vwrist_rot">Function: <code>void moveWrist_Rot(int stepDelay, int vWrist_rot)</code></a></h3>
+<div id="admonition-code-11" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-11-title">
+<div class="admonition-title">
+<div id="admonition-code-11-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-11"></a>
+</div>
+<div>
 <pre><code class="language-c">void moveWrist_Rot(int stepDelay, int vWrist_rot)
 </code></pre>
+</div>
+</div>
 <p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
 <p><em>Parameters:</em></p>
 <ul>
@@ -403,8 +527,18 @@
 </ul>
 <hr />
 <h3 id="function-void-movegripperint-stepdelay-int-vgripper"><a class="header" href="#function-void-movegripperint-stepdelay-int-vgripper">Function: <code>void moveGripper(int stepDelay, int vgripper)</code></a></h3>
+<div id="admonition-code-12" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-12-title">
+<div class="admonition-title">
+<div id="admonition-code-12-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-12"></a>
+</div>
+<div>
 <pre><code class="language-c">void moveGripper(int stepDelay, int vgripper)
 </code></pre>
+</div>
+</div>
 <p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
 <p><em>Parameters:</em></p>
 <ul>

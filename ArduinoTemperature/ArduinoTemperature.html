@@ -28,7 +28,11 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -205,13 +209,23 @@
 </li>
 <li>
 <p><code>int adcValue;</code>, <code>float voltage, temperature;</code>: Variables to store the analog-to-digital converter (ADC) reading, voltage, and temperature values.</p>
-</li>
-</ul>
+<div id="admonition-code" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-title">
+<div class="admonition-title">
+<div id="admonition-code-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code"></a>
+</div>
+<div>
 <pre><code class="language-c++">const int tempPin = A0;
 const int redLED = 13, orangeLED = 12, greenLED = 11, blueLED = 10;
 int adcValue;
 float voltage, temperature;
 </code></pre>
+</div>
+</div>
+</li>
+</ul>
 <h2 id="3--setup-function"><a class="header" href="#3--setup-function">3.  Setup Function:</a></h2>
 <ul>
 <li>
@@ -222,8 +236,14 @@ float voltage, temperature;
 </li>
 <li>
 <p>Initialize the serial communication at a baud rate of 9600 to enable data logging and debugging.</p>
-</li>
-</ul>
+<div id="admonition-code-1" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-1-title">
+<div class="admonition-title">
+<div id="admonition-code-1-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-1"></a>
+</div>
+<div>
 <pre><code class="language-c++">void setup()
 {
   pinMode(tempPin,INPUT);
@@ -236,16 +256,38 @@ float voltage, temperature;
   Serial.begin(9600); // bits per second AKA Baud Rate
 }
 </code></pre>
+</div>
+</div>
+</li>
+</ul>
 <h2 id="4-loop-function"><a class="header" href="#4-loop-function">4. Loop Function:</a></h2>
 <p>To code the loop function you need to do the following:</p>
 <ul>
-<li>Read the analog value from <code>tempPin</code> using <code>analogRead</code> and store it in <code>adcValue</code>.</li>
-<li>Calculate the temperature using a formula and store it in temperature.</li>
-<li>Calculate the voltage using the ADC value and store it in <code>voltage</code>.</li>
-<li>Call the <code>tempIndicator</code> function to control the LED indicators based on the temperature.</li>
-<li>Print the <code>adcValue</code>, <code>temperature</code>, and <code>voltage</code> to the serial monitor for monitoring.</li>
-<li>Add a short <code>delay(500)</code> of 500 milliseconds for smoother display updates.</li>
-</ul>
+<li>
+<p>Read the analog value from <code>tempPin</code> using <code>analogRead</code> and store it in <code>adcValue</code>.</p>
+</li>
+<li>
+<p>Calculate the temperature using a formula and store it in temperature.</p>
+</li>
+<li>
+<p>Calculate the voltage using the ADC value and store it in <code>voltage</code>.</p>
+</li>
+<li>
+<p>Call the <code>tempIndicator</code> function to control the LED indicators based on the temperature.</p>
+</li>
+<li>
+<p>Print the <code>adcValue</code>, <code>temperature</code>, and <code>voltage</code> to the serial monitor for monitoring.</p>
+</li>
+<li>
+<p>Add a short <code>delay(500)</code> of 500 milliseconds for smoother display updates.</p>
+<div id="admonition-code-2" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-2-title">
+<div class="admonition-title">
+<div id="admonition-code-2-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-2"></a>
+</div>
+<div>
 <pre><code class="language-c++">void loop()
 {
     adcValue = analogRead(tempPin);  // Read the analog value from tempPin.
@@ -269,8 +311,20 @@ float voltage, temperature;
     delay(500);  // Add a short delay for smoother display updates.
 }
 </code></pre>
+</div>
+</div>
+</li>
+</ul>
 <h2 id="5-tempindicator-function"><a class="header" href="#5-tempindicator-function">5. <code>tempIndicator()</code> Function:</a></h2>
 <p>The tempIndicator(temperature); placed in the loop() coded out above, functionality needs to be written. Outside the loop() functions final <code>}</code> create a new line and reproduce the following code:</p>
+  <div id="admonition-code-3" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-3-title">
+  <div class="admonition-title">
+  <div id="admonition-code-3-title">
+<p>Code</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-code-3"></a>
+  </div>
+  <div>
 <pre><code class="language-c++">void tempIndicator(float L_temp)
 {
   // Control LEDs based on the temperature range.
@@ -304,6 +358,16 @@ float voltage, temperature;
   }
 }
 </code></pre>
+  </div>
+  </div>
+<div id="admonition-explanation-of-code" class="admonition admonish-example" role="note" aria-labelledby="admonition-explanation-of-code-title">
+<div class="admonition-title">
+<div id="admonition-explanation-of-code-title">
+<p>Explanation of code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-explanation-of-code"></a>
+</div>
+<div>
 <ul>
 <li>This function takes the calculated temperature as an argument <code>(L_temp)</code>.</li>
 <li>It uses a set of conditional statements to control the LEDs based on the temperature range:
@@ -315,18 +379,32 @@ float voltage, temperature;
 </ul>
 </li>
 </ul>
-<blockquote>
-<p><strong>More</strong></p>
-<blockquote>
+</div>
+</div>
+<div id="admonition-todo" class="admonition admonish-info" role="note" aria-labelledby="admonition-todo-title">
+<div class="admonition-title">
+<div id="admonition-todo-title">
+<p>Todo</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-todo"></a>
+</div>
+<div>
 <ul>
-<li>Added four more lights to show granularity for the sensor readings</li>
-<li>to program this you will need more 4 more LEDs and Resistor pairs connected to the Arduino</li>
-<li>Repeart steps in the above to add more LEDs to the script, remember the varaibles must have unique names.
-<code>tempIndicator()</code> needs more functionality so more <code>if</code> conditions to increment in steps of 8 between 0 and 45</li>
+<li>
+<p>Added four more lights to show granularity for the sensor readings</p>
+</li>
+<li>
+<p>to program this you will need more 4 more LEDs and Resistor pairs connected to the Arduino</p>
+</li>
+<li>
+<p>Repeart steps in the above to add more LEDs to the script, remember the varaibles must have unique names.</p>
+</li>
+<li>
+<p><code>tempIndicator()</code> needs more functionality so more <code>if</code> conditions to increment in steps of 8 between 0 and 45</p>
+</li>
 </ul>
-</blockquote>
-</blockquote>
-
+</div>
+</div>
                     </main>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->

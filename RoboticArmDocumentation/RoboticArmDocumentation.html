@@ -28,7 +28,11 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -199,9 +203,17 @@
 </ul>
 <p><strong>Click the image to be redirected to the construction video on youtube</strong></p>
 <p><a href="https://www.youtube.com/watch?time_continue=16&amp;v=Lwb2ppat_bs" title="Robotic Arm Construction"><img src="http://img.youtube.com/vi/5VkjJXm6bx8/0.jpg" alt="" /></a></p>
-<blockquote>
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
+<div class="admonition-title">
+<div id="admonition-warning-title">
+<p>Warning</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
+</div>
+<div>
 <p>Make sure you use the right numbered servo motors (numbering on the end of the cable near the connector) in the right joints. And be a bit careful because mounting the servos with the screws causes the plastic to "bloom" a bit and it will never be quite as tight if you have to remove them and put them back in again. Although the plastic pentagons are pre-attached to the servo hub, but I found that some were a few degrees off center, so you just have to adjust your code for that,  <strong>AGAIN IF YOU NEED HELP ASK!</strong>.</p>
-</blockquote>
+</div>
+</div>
 <h2 id="operational-information"><a class="header" href="#operational-information">Operational Information</a></h2>
 <p><strong>Click the image to be redirected to a quick video of simple pick and place task</strong></p>
 <p><a href="./example_1.gif" title="Robotic Arm performing a pick and place action"><img src="example_1.gif" alt="" /></a></p>
@@ -288,6 +300,14 @@ When the light is OFF when your command is being processed.</p>
 </li>
 </ol>
 <h2 id="acknowledgements"><a class="header" href="#acknowledgements">Acknowledgements</a></h2>
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
+<div class="admonition-title">
+<div id="admonition-note-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
+</div>
+<div>
 <ul>
 <li>The sketch has been developed to use key functionality from <a href="https://github.com/arduino-org/arduino-library-braccio">Braccio Robotic Arm</a> so students do not have to download the libraries.
 <ul>
@@ -295,15 +315,41 @@ When the light is OFF when your command is being processed.</p>
 </ul>
 </li>
 </ul>
-<p><strong>PLEASE NOTE</strong> that this is only to be used with the Braccio Shield V4 becasue the softstart function protects the servo motors and the junctions from damages</p>
-<p><strong>WARNING</strong>
-There has been a request to change some code in the original source code linked above, <a href="https://github.com/arduino-org/arduino-library-braccio/pull/4/commits/4ee82eac74b98196bec2413bd87deda3019e3a5c">mix-up of wrist values</a>. So please only use the code that is provided in this repository as the change has been incorporated.</p>
+</div>
+</div>
+<div id="admonition-warning-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-1-title">
+<div class="admonition-title">
+<div id="admonition-warning-1-title">
+<p>Warning</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning-1"></a>
+</div>
+<div>
+<ul>
+<li>
+<p>This is only to be used with the Braccio Shield V4 becasue the softstart function protects the servo motors and the junctions from damages</p>
+</li>
+<li>
+<p>There has been a request to change some code in the original source code linked above, <a href="https://github.com/arduino-org/arduino-library-braccio/pull/4/commits/4ee82eac74b98196bec2413bd87deda3019e3a5c">mix-up of wrist values</a>. So please only use the code that is provided in this repository as the change has been incorporated.</p>
+</li>
+</ul>
+</div>
+</div>
 <h2 id="health-and-safety"><a class="header" href="#health-and-safety">Health and Safety</a></h2>
+<div id="admonition-danger" class="admonition admonish-danger" role="note" aria-labelledby="admonition-danger-title">
+<div class="admonition-title">
+<div id="admonition-danger-title">
+<p>Danger</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-danger"></a>
+</div>
+<div>
 <ul>
 <li>DO NOT put any body parts or hair near moving parts and when the robotic arm is in operation</li>
 <li>DO NOT exceed max load 200g</li>
 </ul>
-
+</div>
+</div>
                     </main>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->

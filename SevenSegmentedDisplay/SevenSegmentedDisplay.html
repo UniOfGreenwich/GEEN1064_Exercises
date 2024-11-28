@@ -28,7 +28,11 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -166,9 +170,17 @@
                     <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>In today’s activity we will use an Arduino to drive  seven segmented display with C/C++ code.</p>
-<blockquote>
+<div id="admonition-important" class="admonition admonish-tip" role="note" aria-labelledby="admonition-important-title">
+<div class="admonition-title">
+<div id="admonition-important-title">
+<p>Important</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-important"></a>
+</div>
+<div>
 <p>The primary tool for this project will be TinkerCad -&gt; https://www.tinkercad.com</p>
-</blockquote>
+</div>
+</div>
 <h2 id="setting-up-the-circuit"><a class="header" href="#setting-up-the-circuit">Setting up the Circuit</a></h2>
 <p>Once loaded login to TinkerCad and then click on \menu{Circuits &gt; Create new Circuit}.</p>
 <p>Change the circuit name, located top-left hand side of the screen to <strong>Seven__Segment_Display</strong>.</p>
@@ -183,18 +195,26 @@
 <li>1 x resistor, set at \(1k\Omega\) or \(1000\Omega\), <strong>Components</strong> &gt; <strong>Basic</strong> first component in the list.</li>
 </ul>
 <p>See below for the circuit set up:</p>
-<table>
-<tr>
-<td>
+<table style="border-collapse: collapse; border: none; table-layout: fixed; width: 100%;" >
+<tr style="border: none;">
+<td style="border: none; width:60%;">
 <p><img src="./figures/step2.png" alt="" /></p>
 </td>
-<td>
+<td style="border: none; width:33%;">
 <p><img src="./figures/step6.png" alt="" /></p>
 </td>
 </tr>
 </table>
 <h2 id="programming-the-circuit"><a class="header" href="#programming-the-circuit">Programming the Circuit</a></h2>
 <p>Once you have completed the circuit you will need to programme the Arduino Uno.  Located above the <strong>Components</strong> click the <strong>Code</strong> &gt; <strong>Text</strong>. Once the sketch has appeared reproduce the following code:</p>
+<div id="admonition-code" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-title">
+<div class="admonition-title">
+<div id="admonition-code-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code"></a>
+</div>
+<div>
 <pre><code class="language-C++">void setup()
 {
 
@@ -206,7 +226,17 @@ void loop()
 }
 
 </code></pre>
+</div>
+</div>
 <p>Now you are ready to set up all the Sketch up as follows.</p>
+<div id="admonition-code-1" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-1-title">
+<div class="admonition-title">
+<div id="admonition-code-1-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-1"></a>
+</div>
+<div>
 <pre><code class="language-C++">int a = 12;
 int b = 13;
 int c = 7;
@@ -226,13 +256,30 @@ void loop()
 
 }
 </code></pre>
+</div>
+</div>
 <p>Firstly the variables are declared and initialised using the <code>int</code> keyword.</p>
 <p>Lines 1 to 8, define the variables <code>int a</code> through to <code>int g</code> and then lastly <code>int dp</code> which are the pin names for the seven segment display (SSD) component. We have assigned the integers 13 to 6 which are the pins on the Arduino that we are going to use to drive the SSD.</p>
-<blockquote>
-<p>TODO:</p>
+<div id="admonition-todo" class="admonition admonish-info" role="note" aria-labelledby="admonition-todo-title">
+<div class="admonition-title">
+<div id="admonition-todo-title">
+<p>Todo</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-todo"></a>
+</div>
+<div>
 <p>Add inline comment on line 1 to summaries the description above so that it explains what this section of code is, using the <code>//</code> comment symbols.</p>
-</blockquote>
+</div>
+</div>
 <p>The <code>void setup()</code> will be used to set the pin modes and initialise the serial.</p>
+<div id="admonition-code-2" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-2-title">
+<div class="admonition-title">
+<div id="admonition-code-2-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-2"></a>
+</div>
+<div>
 <pre><code class="language-C++">void setup()
 {
   pinMode(a,OUTPUT);
@@ -245,13 +292,30 @@ void loop()
   pinMode(dp,OUTPUT);
 }
 </code></pre>
+</div>
+</div>
 <p>For each variable (<code>a</code> ... <code>g}</code>and <code>dp</code>) we have to specify how the pin on the Arduino behaves, in this case we are setting them as outputs, <code>pinMode(a,OUTPUT);</code>.</p>
-<blockquote>
-<p>TODO:</p>
+<div id="admonition-todo-1" class="admonition admonish-info" role="note" aria-labelledby="admonition-todo-1-title">
+<div class="admonition-title">
+<div id="admonition-todo-1-title">
+<p>Todo</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-todo-1"></a>
+</div>
+<div>
 <p>Add inline comment on lines 12 to describe the purpose of this block of code, hint I have mentioned this above, remember <code>//</code> are the comment symbols.</p>
-</blockquote>
+</div>
+</div>
 <p>The <code>void loop()</code>, function contains code that will run forever.</p>
 <p>Write out the following code:</p>
+<div id="admonition-code-3" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-3-title">
+<div class="admonition-title">
+<div id="admonition-code-3-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-3"></a>
+</div>
+<div>
 <pre><code class="language-C++">void loop()
 {
   digitalWrite(a, HIGH);
@@ -273,21 +337,29 @@ void loop()
   delay(1000);                           //
 }
 </code></pre>
+</div>
+</div>
 <p>Notice that to control the pin we use the function <code>digitalWrite(pinNumber,KEYWORD)</code>. Pins in the <code>OUTPUT</code> mode can only be <code>HIGH</code> or <code>LOW</code> to represent voltage on or off. We can see that line 24 sets the pin <code>12</code> or <code>a</code> is set as <code>HIGH</code>, this is because we are using the anode setup of the SSD and therefore we use the inverse. See the diagrams for anode and cathode circuity.</p>
 <div align=center>
 <p><img src="./figures/step4.png" alt="" /></p>
 <p><img src="./figures/step5.png" alt="" /></p>
 </div>
 <p>If you where to run the circuit now you should see after one second the number 0 displayed and then nothing for a second and so forth. This is because we are waiting 1 second before change the pins' output, <code>delay(1000);</code> where 1000 is in milliseconds.</p>
-<blockquote>
-<p>TODO:</p>
-<ul>
-<li>Using the image below as reference try to generate 0 - 9 then A,b,C,d,E,F and finally the decimal point(dp). You have the skeleton code do this, copy and paste line 33 to line 40 on line 41 and repeat.</li>
-</ul>
-</blockquote>
+<div id="admonition-todo-2" class="admonition admonish-info" role="note" aria-labelledby="admonition-todo-2-title">
+<div class="admonition-title">
+<div id="admonition-todo-2-title">
+<p>Todo</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-todo-2"></a>
+</div>
+<div>
+<p>Using the image below as reference try to generate 0 - 9 then A,b,C,d,E,F and finally the decimal point(dp). You have the skeleton code do this, copy and paste line 33 to line 40 on line 41 and repeat.</p>
 <div align=center>
 <p><img src="./figures/step6.png" alt="" /></p>
 </div>
+</div>
+</div>
+
                     </main>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
