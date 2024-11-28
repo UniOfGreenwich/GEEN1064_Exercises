@@ -4,14 +4,18 @@ In this lab you are going practice building flow charts and diagrams as a way to
 
 You will need to navigate to [https://mermaid-js.github.io/mermaid/#/](https://mermaid-js.github.io/mermaid/#/) to complete this lab.
 
-> **Note:**
->  - Remember to refer to documentation of a tool you are using to understand how to use it...
->  - [https://mermaid-js.github.io/mermaid/#/flowchart](https://mermaid-js.github.io/mermaid/#/flowchart)
+~~~admonish info
 
+- Remember to refer to documentation of a tool you are using to understand how to use it...
+- [https://mermaid-js.github.io/mermaid/#/flowchart](https://mermaid-js.github.io/mermaid/#/flowchart)
+
+~~~
 
 ## 1. Design an alogrithm or flow process for making a hot drink
 
-**The Code**
+
+
+~~~admonish code title='The Code'
 
 ```mermaid
 flowchart TD
@@ -47,6 +51,8 @@ flowchart TD
     turn_kettle_on --> sugar -- no --> stir --> stop
 
 ```
+
+~~~
 
 **The Output**
 
