@@ -33,7 +33,11 @@ This repository is for the Year Zero Robotic Arm project, included is Arduino sk
 
   [![](http://img.youtube.com/vi/5VkjJXm6bx8/0.jpg)](https://www.youtube.com/watch?time_continue=16&v=Lwb2ppat_bs "Robotic Arm Construction")
 
-> Make sure you use the right numbered servo motors (numbering on the end of the cable near the connector) in the right joints. And be a bit careful because mounting the servos with the screws causes the plastic to "bloom" a bit and it will never be quite as tight if you have to remove them and put them back in again. Although the plastic pentagons are pre-attached to the servo hub, but I found that some were a few degrees off center, so you just have to adjust your code for that,  **AGAIN IF YOU NEED HELP ASK!**.
+~~~admonish warning
+
+Make sure you use the right numbered servo motors (numbering on the end of the cable near the connector) in the right joints. And be a bit careful because mounting the servos with the screws causes the plastic to "bloom" a bit and it will never be quite as tight if you have to remove them and put them back in again. Although the plastic pentagons are pre-attached to the servo hub, but I found that some were a few degrees off center, so you just have to adjust your code for that,  **AGAIN IF YOU NEED HELP ASK!**.
+
+~~~
 
 ## Operational Information 
 
@@ -94,15 +98,25 @@ The automated controls are a sequence of pre-programmed movements, there are two
 
 ## Acknowledgements 
 
+~~~admonish note
+
 * The sketch has been developed to use key functionality from [Braccio Robotic Arm](https://github.com/arduino-org/arduino-library-braccio) so students do not have to download the libraries. 
    * Further modification includes Serial I/O
+~~~
 
-**PLEASE NOTE** that this is only to be used with the Braccio Shield V4 becasue the softstart function protects the servo motors and the junctions from damages
+~~~admonish warning
 
-**WARNING** 
-There has been a request to change some code in the original source code linked above, [mix-up of wrist values](https://github.com/arduino-org/arduino-library-braccio/pull/4/commits/4ee82eac74b98196bec2413bd87deda3019e3a5c). So please only use the code that is provided in this repository as the change has been incorporated.
+- This is only to be used with the Braccio Shield V4 becasue the softstart function protects the servo motors and the junctions from damages
+
+- There has been a request to change some code in the original source code linked above, [mix-up of wrist values](https://github.com/arduino-org/arduino-library-braccio/pull/4/commits/4ee82eac74b98196bec2413bd87deda3019e3a5c). So please only use the code that is provided in this repository as the change has been incorporated.
+
+~~~
 
 ## Health and Safety
 
+~~~admonish danger
+
 * DO NOT put any body parts or hair near moving parts and when the robotic arm is in operation 
 * DO NOT exceed max load 200g
+
+~~~

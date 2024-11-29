@@ -40,9 +40,14 @@ This section contains Definitions for the code base supplied in the:
 
 ### Function: `void initialiseRoboticArm()`
 
+~~~admonish code 
+
 ```c
 void initialiseRoboticArm()
 ```
+
+~~~
+
 #### Important:
 `initialiseRoboticArm` invokes the `roboticArmBegin()` function and displays operational information to user via the command line
 
@@ -50,9 +55,13 @@ void initialiseRoboticArm()
 
 ### Function: `void homePosition()`
 
+~~~admonish code 
+
 ```c
 void homePosition()
 ```
+
+~~~
 
 ### Important
 
@@ -62,9 +71,13 @@ This function sets arm to the home position.
 
 ### Function: `void printPosition()`
 
+~~~admonish code 
+
 ```c
 void printPosition()
 ```
+
+~~~
 
 ### Important
 
@@ -82,9 +95,14 @@ This function gets the lastest servo position provided by the user.
 
 ### Function : `void roboticArmMovement(int stepDelay, int vBase, int vShoulder, int vElbow, int vWrist_ver, int vWrist_rot, int vgripper)`
 
+~~~admonish code 
+
 ```c
 void roboticArmMovement(int stepDelay, int vBase, int vShoulder, int vElbow, int vWrist_ver, int vWrist_rot, int vgripper)
 ```
+
+~~~
+
 ### Important:
 
 This functions allows you to control all the servo motors. Function moves the servos in the following order:
@@ -111,9 +129,14 @@ This functions allows you to control all the servo motors. Function moves the se
 
 ### Function: `void processCommand()`
 
+~~~admonish code 
+
 ```c
 void processCommand()
 ```
+
+~~~
+
 #### Important:
 `processCommand` actions the `String l_Command` by finding the indentifier and then the angle ie B60
 
@@ -122,9 +145,14 @@ void processCommand()
 
 ### Function: `int whichMotor(String l_Command, String l_Motor)`
 
+~~~admonish code 
+
 ```c
 int whichMotor(String l_Command, String l_Motor)
 ```
+
+~~~
+
 Indetifies the supplied motor to move by searching the String Command and checking against the input motor
 
 #### Important:
@@ -144,9 +172,14 @@ Indetifies the supplied motor to move by searching the String Command and checki
 
 ### Function: `void moveServo(Servo &servo, int &currentPosition, int targetPosition, int stepDelay, int minPosition, int maxPosition, const char *servoName)`
 
+~~~admonish code 
+
 ```c
 void moveServo(Servo &servo, int &currentPosition, int targetPosition, int stepDelay, int minPosition, int maxPosition, const char *servoName)
 ```
+
+~~~
+
 **Moves a servo to a specified target position with controlled delay and position constraints.**
 
 *Parameters:*
@@ -169,9 +202,14 @@ void moveServo(Servo &servo, int &currentPosition, int targetPosition, int stepD
 
 ### Function: `void moveBase(int stepDelay, int vBase)`
 
+~~~admonish code 
+
 ```c
 void moveBase(int stepDelay, int vBase)
 ```
+
+~~~
+
 **Moves the servo to a specified target position with controlled delay.**
 
 *Parameters:*
@@ -184,9 +222,14 @@ void moveBase(int stepDelay, int vBase)
 
 ### Function: `void moveShoulder(int stepDelay, int vShoulder)`
 
+~~~admonish code 
+
 ```c
 void moveShoulder(int stepDelay, int vShoulder)
 ```
+
+~~~
+
 **Moves the servo to a specified target position with controlled delay.**
 
 *Parameters:*
@@ -199,9 +242,14 @@ void moveShoulder(int stepDelay, int vShoulder)
 
 ### Function: `void moveElbow(int stepDelay, int vElbow)`
 
+~~~admonish code 
+
 ```c
 void moveElbow(int stepDelay, int vElbow)
 ```
+
+~~~
+
 **Moves the servo to a specified target position with controlled delay.**
 
 *Parameters:*
@@ -214,9 +262,14 @@ void moveElbow(int stepDelay, int vElbow)
 
 ### Function: `void moveWrist_Ver(int stepDelay, int vWrist_Ver)`
 
+~~~admonish code 
+
 ```c
 void moveWrist_Ver(int stepDelay, int vWrist_Ver)
 ```
+
+~~~
+
 **Moves the servo to a specified target position with controlled delay.**
 
 *Parameters:*
@@ -229,9 +282,14 @@ void moveWrist_Ver(int stepDelay, int vWrist_Ver)
 
 ### Function: `void moveWrist_Rot(int stepDelay, int vWrist_rot)`
 
+~~~admonish code 
+
 ```c
 void moveWrist_Rot(int stepDelay, int vWrist_rot)
 ```
+
+~~~
+
 **Moves the servo to a specified target position with controlled delay.**
 
 *Parameters:*
@@ -244,9 +302,14 @@ void moveWrist_Rot(int stepDelay, int vWrist_rot)
 
 ### Function: `void moveGripper(int stepDelay, int vgripper)`
 
+~~~admonish code 
+
 ```c
 void moveGripper(int stepDelay, int vgripper)
 ```
+
+~~~
+
 **Moves the servo to a specified target position with controlled delay.**
 
 *Parameters:*
