@@ -1,0 +1,603 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Robotic Code SDK - GEEN1064 Computing Exercises</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="burgundy">Burgundy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="dracula">Dracula</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ecoFriend">EcoFriend</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="pinkrose">Pinkrose</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="space">Space</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="sustain">Sustain</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="tokyonight">Tokyonight</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">GEEN1064 Computing Exercises</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/uniofgreenwich/GEEN1064_Exercises/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/uniofgreenwich/GEEN1064_Exercises/edit/main/content/RoboticArmDocumentation/RoboticArmSDKDocumentation.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <h1 id="robotic-arm-source-code-documentation"><a class="header" href="#robotic-arm-source-code-documentation">Robotic Arm Source Code Documentation</a></h1>
+<p>This section contains Definitions for the code base supplied in the:</p>
+<ul>
+<li>GitHub link: <a href="https://github.com/UniOfGreenwich/GEEN1064_RoboticArm">https://github.com/UniOfGreenwich/GEEN1064_RoboticArm</a>
+<ul>
+<li>Header file <a href="https://github.com/UniOfGreenwich/GEEN1064_RoboticArm/blob/main/Robot_Arm_Main/RoboticArm.h"><code>RoboticArm.h</code></a></li>
+<li>Source file <a href="https://github.com/UniOfGreenwich/GEEN1064_RoboticArm/blob/main/Robot_Arm_Main/RoboticArm.cpp"><code>RoboticArm.cpp</code></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="functions"><a class="header" href="#functions">Functions:</a></h2>
+<blockquote>
+<ul>
+<li>
+<p><a href="#function-void-initialiseRoboticArm"><code>void initialiseRoboticArm()</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-homePosition"><code>void homePosition()</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-printPosition"><code>void printPosition()</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-roboticArmBegin"><code>void roboticArmBegin()</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-roboticArmMovement-int-stepDelay-int-vBase-int-vShoulder-int-vElbow-int-vWrist_ver-int-vWrist_rot-int-vgripper"><code>void roboticArmMovement(int stepDelay, int vBase, int vShoulder, int vElbow, int vWrist_ver, int vWrist_rot, int vgripper)</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-processcommand"><code>void processCommand()</code></a></p>
+</li>
+<li>
+<p><a href="#function-int-whichmotorstring-l_command-string-l_motor"><code>int whichMotor(String l_Command, String l_Motor)</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-moveservoservo-servo-int-currentposition-int-targetposition-int-stepdelay-int-minposition-int-maxposition-const-char-servoname"><code>void moveServo(Servo &amp;servo, int &amp;currentPosition, int targetPosition, int stepDelay, int minPosition, int maxPosition, const char *servoName)</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-movebaseint-stepdelay-int-vbase"><code>void moveBase(int stepDelay, int vBase)</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-moveshoulderint-stepdelay-int-vshoulder"><code>void moveShoulder(int stepDelay, int vShoulder)</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-moveelbowint-stepdelay-int-velbow"><code>void moveElbow(int stepDelay, int vElbow)</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-movewrist_verint-stepdelay-int-vwrist_ver"><code>void moveWrist_Ver(int stepDelay, int vWrist_Ver)</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-movewrist_rotint-stepdelay-int-vwrist_rot"><code>void moveWrist_Rot(int stepDelay, int vWrist_rot)</code></a></p>
+</li>
+<li>
+<p><a href="#function-void-movegripperint-stepdelay-int-vgripper"><code>void moveGripper(int stepDelay, int vgripper)</code></a></p>
+</li>
+</ul>
+</blockquote>
+<h2 id="functions-documentation"><a class="header" href="#functions-documentation">Functions Documentation:</a></h2>
+<h3 id="function-void-initialiseroboticarm"><a class="header" href="#function-void-initialiseroboticarm">Function: <code>void initialiseRoboticArm()</code></a></h3>
+<div id="admonition-code" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-title">
+<div class="admonition-title">
+<div id="admonition-code-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code"></a>
+</div>
+<div>
+<pre><code class="language-c">void initialiseRoboticArm()
+</code></pre>
+</div>
+</div>
+<h4 id="important"><a class="header" href="#important">Important:</a></h4>
+<p><code>initialiseRoboticArm</code> invokes the <code>roboticArmBegin()</code> function and displays operational information to user via the command line</p>
+<hr />
+<h3 id="function-void-homeposition"><a class="header" href="#function-void-homeposition">Function: <code>void homePosition()</code></a></h3>
+<div id="admonition-code-1" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-1-title">
+<div class="admonition-title">
+<div id="admonition-code-1-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-1"></a>
+</div>
+<div>
+<pre><code class="language-c">void homePosition()
+</code></pre>
+</div>
+</div>
+<h3 id="important-1"><a class="header" href="#important-1">Important</a></h3>
+<p>This function sets arm to the home position.</p>
+<hr />
+<h3 id="function-void-printposition"><a class="header" href="#function-void-printposition">Function: <code>void printPosition()</code></a></h3>
+<div id="admonition-code-2" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-2-title">
+<div class="admonition-title">
+<div id="admonition-code-2-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-2"></a>
+</div>
+<div>
+<pre><code class="language-c">void printPosition()
+</code></pre>
+</div>
+</div>
+<h3 id="important-2"><a class="header" href="#important-2">Important</a></h3>
+<p>This function gets the lastest servo position provided by the user.</p>
+<hr />
+<h3 id="function-void-roboticarmbegin"><a class="header" href="#function-void-roboticarmbegin">Function: <code>void roboticArmBegin()</code></a></h3>
+<h3 id="important-3"><a class="header" href="#important-3">Important:</a></h3>
+<p>Braccio initialization and set intial position. Modifing this function you can set up the initial position of all the servo motors of Braccio.</p>
+<hr />
+<h3 id="function--void-roboticarmmovementint-stepdelay-int-vbase-int-vshoulder-int-velbow-int-vwrist_ver-int-vwrist_rot-int-vgripper"><a class="header" href="#function--void-roboticarmmovementint-stepdelay-int-vbase-int-vshoulder-int-velbow-int-vwrist_ver-int-vwrist_rot-int-vgripper">Function : <code>void roboticArmMovement(int stepDelay, int vBase, int vShoulder, int vElbow, int vWrist_ver, int vWrist_rot, int vgripper)</code></a></h3>
+<div id="admonition-code-3" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-3-title">
+<div class="admonition-title">
+<div id="admonition-code-3-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-3"></a>
+</div>
+<div>
+<pre><code class="language-c">void roboticArmMovement(int stepDelay, int vBase, int vShoulder, int vElbow, int vWrist_ver, int vWrist_rot, int vgripper)
+</code></pre>
+</div>
+</div>
+<h3 id="important-4"><a class="header" href="#important-4">Important:</a></h3>
+<p>This functions allows you to control all the servo motors. Function moves the servos in the following order:</p>
+<ul>
+<li>Robotic Arm moves in this order base -&gt; shoulder -&gt; elbow -&gt; wrist vertical -&gt; wrist rotation -&gt; gripper</li>
+</ul>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>stepDelay</code> The delay between each servo movement</p>
+</li>
+<li>
+<p><code>vBase next</code> base servo motor degree</p>
+</li>
+<li>
+<p><code>vShoulder</code> next shoulder servo motor degree</p>
+</li>
+<li>
+<p><code>vElbow</code> next elbow servo motor degree</p>
+</li>
+<li>
+<p><code>vWrist_ver</code> next wrist rotation servo motor degree</p>
+</li>
+<li>
+<p><code>vWrist_rot</code> next wrist vertical servo motor degree</p>
+</li>
+<li>
+<p><code>vgripper</code> next gripper servo motor degree</p>
+</li>
+</ul>
+<hr />
+<h3 id="function-void-processcommand"><a class="header" href="#function-void-processcommand">Function: <code>void processCommand()</code></a></h3>
+<div id="admonition-code-4" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-4-title">
+<div class="admonition-title">
+<div id="admonition-code-4-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-4"></a>
+</div>
+<div>
+<pre><code class="language-c">void processCommand()
+</code></pre>
+</div>
+</div>
+<h4 id="important-5"><a class="header" href="#important-5">Important:</a></h4>
+<p><code>processCommand</code> actions the <code>String l_Command</code> by finding the indentifier and then the angle ie B60</p>
+<hr />
+<h3 id="function-int-whichmotorstring-l_command-string-l_motor"><a class="header" href="#function-int-whichmotorstring-l_command-string-l_motor">Function: <code>int whichMotor(String l_Command, String l_Motor)</code></a></h3>
+<div id="admonition-code-5" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-5-title">
+<div class="admonition-title">
+<div id="admonition-code-5-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-5"></a>
+</div>
+<div>
+<pre><code class="language-c">int whichMotor(String l_Command, String l_Motor)
+</code></pre>
+</div>
+</div>
+<p>Indetifies the supplied motor to move by searching the String Command and checking against the input motor</p>
+<h4 id="important-6"><a class="header" href="#important-6">Important:</a></h4>
+<p>Indetifies the supplied motor to move by searching the String Command and checking against the input motor</p>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>l_Command</code> is the Command received from the serail montior</p>
+</li>
+<li>
+<p><code>l_motor</code> is the motor indentifier that must match parent condition.</p>
+</li>
+</ul>
+<p><em>Return:</em></p>
+<ul>
+<li>param angle is the new angle the identified motor will position to.</li>
+</ul>
+<hr />
+<h3 id="function-void-moveservoservo-servo-int-currentposition-int-targetposition-int-stepdelay-int-minposition-int-maxposition-const-char-servoname"><a class="header" href="#function-void-moveservoservo-servo-int-currentposition-int-targetposition-int-stepdelay-int-minposition-int-maxposition-const-char-servoname">Function: <code>void moveServo(Servo &amp;servo, int &amp;currentPosition, int targetPosition, int stepDelay, int minPosition, int maxPosition, const char *servoName)</code></a></h3>
+<div id="admonition-code-6" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-6-title">
+<div class="admonition-title">
+<div id="admonition-code-6-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-6"></a>
+</div>
+<div>
+<pre><code class="language-c">void moveServo(Servo &amp;servo, int &amp;currentPosition, int targetPosition, int stepDelay, int minPosition, int maxPosition, const char *servoName)
+</code></pre>
+</div>
+</div>
+<p><strong>Moves a servo to a specified target position with controlled delay and position constraints.</strong></p>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>servo</code> The servo motor object to be controlled.</p>
+</li>
+<li>
+<p><code>currentPosition</code> A reference to the current position variable of the servo.</p>
+</li>
+<li>
+<p><code>targetPosition</code> The desired target angle for the servo.</p>
+</li>
+<li>
+<p><code>stepDelay</code> Delay in milliseconds between each step, used to control movement speed.</p>
+</li>
+<li>
+<p><code>minPosition</code> The minimum allowed position for the servo, typically between 0 and 180.</p>
+</li>
+<li>
+<p><code>maxPosition</code> The maximum allowed position for the servo, typically between 0 and 180.</p>
+</li>
+<li>
+<p><code>servoName</code> A character string used for debugging output to identify which servo is being moved.</p>
+</li>
+</ul>
+<hr />
+<h3 id="function-void-movebaseint-stepdelay-int-vbase"><a class="header" href="#function-void-movebaseint-stepdelay-int-vbase">Function: <code>void moveBase(int stepDelay, int vBase)</code></a></h3>
+<div id="admonition-code-7" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-7-title">
+<div class="admonition-title">
+<div id="admonition-code-7-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-7"></a>
+</div>
+<div>
+<pre><code class="language-c">void moveBase(int stepDelay, int vBase)
+</code></pre>
+</div>
+</div>
+<p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>stepDelay</code> Delay in milliseconds between each step, controlling the speed of movement.</p>
+</li>
+<li>
+<p><code>vBase</code> The target position for the servo, constrained between 0 and 180 degrees.</p>
+</li>
+</ul>
+<hr />
+<h3 id="function-void-moveshoulderint-stepdelay-int-vshoulder"><a class="header" href="#function-void-moveshoulderint-stepdelay-int-vshoulder">Function: <code>void moveShoulder(int stepDelay, int vShoulder)</code></a></h3>
+<div id="admonition-code-8" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-8-title">
+<div class="admonition-title">
+<div id="admonition-code-8-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-8"></a>
+</div>
+<div>
+<pre><code class="language-c">void moveShoulder(int stepDelay, int vShoulder)
+</code></pre>
+</div>
+</div>
+<p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>stepDelay</code> Delay in milliseconds between each step, controlling the speed of movement.</p>
+</li>
+<li>
+<p><code>vShoulder</code> The target position for the servo, constrained between 15 and 165 degrees.</p>
+</li>
+</ul>
+<hr />
+<h3 id="function-void-moveelbowint-stepdelay-int-velbow"><a class="header" href="#function-void-moveelbowint-stepdelay-int-velbow">Function: <code>void moveElbow(int stepDelay, int vElbow)</code></a></h3>
+<div id="admonition-code-9" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-9-title">
+<div class="admonition-title">
+<div id="admonition-code-9-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-9"></a>
+</div>
+<div>
+<pre><code class="language-c">void moveElbow(int stepDelay, int vElbow)
+</code></pre>
+</div>
+</div>
+<p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>stepDelay</code> Delay in milliseconds between each step, controlling the speed of movement.</p>
+</li>
+<li>
+<p><code>vElbow</code> The target position for the servo, constrained between 0 and 180 degrees.</p>
+</li>
+</ul>
+<hr />
+<h3 id="function-void-movewrist_verint-stepdelay-int-vwrist_ver"><a class="header" href="#function-void-movewrist_verint-stepdelay-int-vwrist_ver">Function: <code>void moveWrist_Ver(int stepDelay, int vWrist_Ver)</code></a></h3>
+<div id="admonition-code-10" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-10-title">
+<div class="admonition-title">
+<div id="admonition-code-10-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-10"></a>
+</div>
+<div>
+<pre><code class="language-c">void moveWrist_Ver(int stepDelay, int vWrist_Ver)
+</code></pre>
+</div>
+</div>
+<p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>stepDelay</code> Delay in milliseconds between each step, controlling the speed of movement.</p>
+</li>
+<li>
+<p><code>vWrist_Ver</code> The target position for the servo, constrained between 0 and 180 degrees.</p>
+</li>
+</ul>
+<hr />
+<h3 id="function-void-movewrist_rotint-stepdelay-int-vwrist_rot"><a class="header" href="#function-void-movewrist_rotint-stepdelay-int-vwrist_rot">Function: <code>void moveWrist_Rot(int stepDelay, int vWrist_rot)</code></a></h3>
+<div id="admonition-code-11" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-11-title">
+<div class="admonition-title">
+<div id="admonition-code-11-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-11"></a>
+</div>
+<div>
+<pre><code class="language-c">void moveWrist_Rot(int stepDelay, int vWrist_rot)
+</code></pre>
+</div>
+</div>
+<p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>stepDelay</code> Delay in milliseconds between each step, controlling the speed of movement.</p>
+</li>
+<li>
+<p><code>vWrist_rot</code> The target position for the servo, constrained between 0 and 180 degrees.</p>
+</li>
+</ul>
+<hr />
+<h3 id="function-void-movegripperint-stepdelay-int-vgripper"><a class="header" href="#function-void-movegripperint-stepdelay-int-vgripper">Function: <code>void moveGripper(int stepDelay, int vgripper)</code></a></h3>
+<div id="admonition-code-12" class="admonition admonish-code" role="note" aria-labelledby="admonition-code-12-title">
+<div class="admonition-title">
+<div id="admonition-code-12-title">
+<p>Code</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-code-12"></a>
+</div>
+<div>
+<pre><code class="language-c">void moveGripper(int stepDelay, int vgripper)
+</code></pre>
+</div>
+</div>
+<p><strong>Moves the servo to a specified target position with controlled delay.</strong></p>
+<p><em>Parameters:</em></p>
+<ul>
+<li>
+<p><code>stepDelay</code> Delay in milliseconds between each step, controlling the speed of movement.</p>
+</li>
+<li>
+<p><code>vgripper</code> The target position for the servo, constrained between 10 and 73 degrees.</p>
+</li>
+</ul>
+
+                    </main>
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../RoboticArmDocumentation/RoboticArmDocumentation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../ArduinoTemperature/ArduinoTemperature.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../RoboticArmDocumentation/RoboticArmDocumentation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../ArduinoTemperature/ArduinoTemperature.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/pagetoc.js"></script>
+
+
+    </div>
+    </body>
+</html>
