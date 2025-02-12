@@ -187,3 +187,15 @@ Using the image below as reference try to generate 0 - 9 then A,b,C,d,E,F and fi
 
 ~~~
 
+
+
+## Full circuit
+
+~~~admonish tip
+
+- If you have struggled to get there.... here is full project you can tinker with:
+
+  - [https://www.tinkercad.com/things/f1nb9SAYT7l-seven-segment-display?sharecode=XryAKkeglrn3gmujvlE6UA08TxnuodVeK7B3zghm-nA](https://www.tinkercad.com/things/f1nb9SAYT7l-seven-segment-display?sharecode=XryAKkeglrn3gmujvlE6UA08TxnuodVeK7B3zghm-nA)
+
+
+~~~
