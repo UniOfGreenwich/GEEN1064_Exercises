@@ -1,13 +1,18 @@
 # Motor Control Board using TinkerCad
 
-## 1 Introduction 
+## 1. Introduction 
 
 In today’s activity we will use an Arduino and a H-bridge controller to engage a DC motor to move in a postive or negative direction based on a temperature value. This could be useful to move plants, canopy in response to heat from the Sun.
 
-> The primary tool for this project will be TinkerCad -> https://www.tinkercad.com
+~~~admonish note
+
+- The primary tool for this project will be TinkerCad -> https://www.tinkercad.com
+
+~~~
+
 -------------------
 
-## 2 RPM, Rad/s, Angular Velocity(Deg/s)
+## 2. RPM, Rad/s, Angular Velocity(Deg/s)
 
 This section provides a quick recap on Revolution Per Minute, Radians Per Second and Degrees per second. Being able to interchange between these values will help visualise.
 
@@ -85,31 +90,27 @@ Now that we rad/s we can calculate the angular velocity (deg/s). There are two w
       \[
          \begin{aligned}
             deg/s &amp;= RPM \cdot \frac{360}{60} \\
-            628.32^{\circ}/s  &amp;= 1000 \cdot \frac{360}{60} 57.2958^{\circ}
+            628.32^{\circ}/s  &amp;= 1000 \cdot \frac{360}{60} \cdot 57.2958^{\circ}
          \end{aligned}\tag{Eqn:5}
       \]
    </span>
 </p>
 
-**Questions:**
-
-<details>
-<summary>Convert 53 RPM to Angular velocity to 2 decimal places</summary>
+~~~admonish question title="Question: Convert 53 RPM to Angular velocity to 2 decimal places" collapsible=true
 
 \\(318^\circ\\)
 
-</details>
+~~~
 
-<details>
-<summary>Convert 4242 RPM to Angular velocity to 2 decimal places.</summary>
+~~~admonish question title="Question: Convert 4242 RPM to Angular velocity to 2 decimal places" collapsible=true
 
-\\(25452^{\circ}\\)
+\\(25452^{\circ}\/s\\)
 
-</details>
+~~~
 
 -----------------------------
 
-## 3 Setting up the circuit
+## 3. Setting up the circuit
 
 Once loaded login to TinkerCad and then click on **Circuits** > **Create new Circuit**
 
@@ -190,23 +191,374 @@ For reference look at the below image for L293D functional block diagram and pin
 </div>
 
 
-## 4.  Programming The Circuit
+## 4. Programming The Circuit
 
-Once you have completed the circuit you will need to programme the Arduino Uno. Located above **Components** click the **Code Text**. Once sketch has appeared reproduce the following code:
+1. Once you have completed the circuit you will need to programme the Arduino Uno. Located above **Components** click the **Code Text**. 
 
-```C++
-void setup()
-{
+2. Once sketch has appeared reproduce the following code:
 
-}
+   ~~~admonish code
 
-void loop()
-{
+   ```C++
+   void setup()
+   {
 
-}
-```
+   }
 
-Now you are ready to set up all the Sketch up as follows.
+   void loop()
+   {
+
+   }
+   ```
+
+   ~~~
+
+### 4.1 Globale variables
+
+1. Now you are ready to set up all the Sketch up as follows.
+
+      ~~~admonish code
+
+      ```C++
+      #define en 10
+      #define in1 9
+      #define in2 8
+      #define temp A0
+
+      void setup()
+      {
+
+      }
+
+      void loop()
+      {
+
+      }
+      ```
+
+      ~~~
+
+      ~~~admonish example title="Explanation"
+
+      - Firstly the variables are declared and initialised using the `#define` keyword.
+
+      - Lines 1 to 3, define the variables `en 10`, `in1 9` and `in2 8` will reference the physical connections of the L293D Enable 1 & 2, **Input 1** and **Input 2** respectively.
+
+      - Line 4, define the variable `temp A0` will reference the physical connection of the TMP36 `Vout` pin.
+
+      ~~~
+
+
+2. Now declare the following dynamic variables are declared and initialise them using data types `int`, `float` and `bool`.
+
+      ~~~admonish code
+
+      ```C++
+      ...
+      #define temp A0
+
+      int pwmOutput = 12;
+      float tempValue;
+      float temperature;
+      float rads = 0.0;
+      float degrees = 0.0;
+      bool movedRight = false;
+      bool movedLeft = false;
+
+      ...
+      void setup()
+      ```
+      ~~~
+
+      ~~~admonish example title="Explanation"
+
+      - Line 6, `int pwmOutput = 12;`, will stores the value that will be used in the `analogWrite()` function.
+
+      - Lines 7 and 8, variables `float tempValue; float temperature;` will store the `analogRead()` value and the converted temperature value respectively. 
+
+      - Lines 9 and 10, variables `float rads =0.0;` and `float degrees = 0.0;` will store the calculated values for radians per second and degrees per second respectively.
+
+      - Lines 11 and 12, variables `bool movedRight = false;` and `bool movedLeft = false;` are used to stop the motor turning continuously.
+
+      ~~~
+
+3. Script should now look like the below:
+
+      ~~~admonish code collapsible=true
+
+      ```C++
+      #define en 10
+      #define in1 9
+      #define in2 8
+      #define temp A0
+
+      int pwmOutput = 12;
+      float tempValue;
+      float temperature;
+      float rads = 0.0;
+      float degrees = 0.0;
+      bool movedRight = false;
+      bool movedLeft = false;
+
+      void setup()
+      {
+
+      }
+
+      void loop()
+      {
+
+      }
+      ```
+      ~~~
+
+      ~~~admonish todo
+
+      - Add inline comments on lines 6 - 12 for what each variable is for, using the // comment symbols
+
+      ~~~
+
+### 4.2 void setup
+
+1. The `void setup()` will be used to set the pin modes and initialise the serial.
+
+      ~~~admonish code
+
+      ```C++
+      void setup()
+      {
+      Serial.begin(9600);
+      pinMode(en, OUTPUT);
+      pinMode(in1, OUTPUT);
+      pinMode(in2, OUTPUT);
+      }
+      ```
+
+      ~~~
+
+      ~~~admonish example title="Explanation"
+
+      - Line 16's code, `Serial.begin(9600);`, sets the Serial speed at 9600 bits per second (bps)
+
+      - Line 17's code, `pinMode(en, OUTPUT);`, sets pin 10 on the Arduino Uno as an output so that a signal can be sent to the **Enable 1 & 2** pin of the L293D chip.
+
+      - Line 18's and 19's code, `pinMode(in1, OUTPUT);` `pinMode(in2, OUTPUT)`, sets pin 9 and 8 on the Arduino Uno as an output so that a signal can be sent to the **Input 1 & 2** pin of the L293D chip respectively.
+
+      ~~~
+
+2. Script should now look like the below:
+
+      ~~~admonish code collapsible=true
+
+      ```C++
+      #define en 10
+      #define in1 9
+      #define in2 8
+      #define temp A0
+
+      int pwmOutput = 12;
+      float tempValue;
+      float temperature;
+      float rads = 0.0;
+      float degrees = 0.0;
+      bool movedRight = false;
+      bool movedLeft = false;
+
+      void setup()
+      {
+      Serial.begin(9600);
+      pinMode(en, OUTPUT);
+      pinMode(in1, OUTPUT);
+      pinMode(in2, OUTPUT);
+      }
+
+      void loop()
+      {
+
+      }
+      ```
+      ~~~
+
+      ~~~admonish todo
+
+      - Add inline comments on lines 16 - 19 for what each variable is for, using the // comment symbols
+
+      ~~~
+
+
+### 4.3 void loop
+
+1.  Reproduce the following code below: 
+
+      ~~~admonish code
+
+      ```C++
+      void loop()
+      {
+      tempValue = analogRead(temp);
+      temperature = ((tempValue*(5.0/1024.0))-0.5)/0.01;
+
+      if( temperature <= 30.0 && movedRight == false)
+      {
+         motorInstructions();
+         debugger();
+
+         digitalWrite(in1, LOW);
+         digitalWrite(in2, HIGH);
+         delay(1000);
+         digitalWrite(in2, LOW);
+         movedRight = true;
+         movedLeft = false;
+      }
+      else if ( temperature >= 40.0 && movedLeft == false)
+      {
+         motorInstructions();
+         debugger();
+
+         digitalWrite(in1, HIGH);
+         digitalWrite(in2, LOW);
+         delay(1000);
+         digitalWrite(in1, LOW);
+         movedLeft = true;
+         movedRight = false;
+      }
+      }
+      ```
+
+      ~~~
+
+      ~~~admonish example title="Explanation"
+
+      - Starting with line 24, the code `tempValue = analogRead(temp);` will read the TMP36 wired to pin A0 of the Arduino, and convert voltage to the Analogue Digital Converted value. 
+      
+      - Remember the that voltage rang is 0V to 5V and the ADC of the Arduino is 10-bits, so its range is 0 - 1023.
+
+      - Line 25's code, `temperature = ((tempValue*(5.0/1024.0))-0.5)/0.01;}`, converts the the `temp` value, (0 - 358) to Celsius with a range of \\(-40^{\circ}C\\) to \\(125^{\circ}C\\), see **equation 6**.
+
+      
+      <p>
+         <span class="math display">
+            \[
+               \begin{aligned}
+                  temperature = \cfrac{\left(\left(tempValue \cdot \left( \cfrac{5.0V}{1024}\right)\right)-0.5\right)}{0.01}\\ 
+                  \Rightarrow 26.17^{\circ}C = \cfrac{\left(\left(156 \cdot \left( \cfrac{5.0V}{1024}\right)\right)-0.5\right)}{0.01} 
+               \end{aligned}\tag{Eqn:6}
+            \]
+         </span>
+      </p>
+
+      ~~~
+
+      ~~~admonish todo
+
+      - Add inline comments on lines 24 - 25 for what each variable is for, using the // comment symbols
+
+      ~~~
+
+2. Now that the `temperature` value has been calculated, lines 27 and 39 can be explained.
+
+      ~~~admonish example title="Explanation"
+      
+      - Line 27's code, `if( temperature <= 30.0 && movedRight == false)`, checks to see if the `temperature` is less than or equal to, `<=`, 30.0. If this condition is `true` then the second part of the conditional statement can be checked, using `&&`. the boolean (true or false) variable `movedRight == false` is compared for equality `==`, remember a single `=` means assign the right hand side to the left hand side. Now if both conditions are true then the code between lines 29 and 37 will be executed. If either statement is false, then then line 39 is executed. 
+
+      - Line 39's code is much the same as line 27's, but the `temperature` has to be greater or equal to, `>=`, 40.0 and `movedLeft` must be false. If both statements are true then lines 41 to 49 are executed, if not then the programme loops back to the line 24, and the process starts again. 
+
+      ~~~
+
+3. Now we can look inside lines 29 to 30 & lines 40 to 49, you probably can see that there are only a few differences between the two blocks of code. We will look at lines 29, 30, 41 and 42 later. 
+
+      ~~~admonish example title="Explanation"
+      
+      - Lets look at lines 32, 33 and 44 and 45, where the two sets of lines are polar opposites of each other. The `digitalWrite(in1, LOW);` `digitalWrite(in1, HIGH);` & `digitalWrite(in2, LOW);` `digitalWrite(in2, HIGH);`  changes the direction the motor spins. 
+
+      - Looking at the block diagram of the L293D, we can see that Input 1, and Input 2, both pin 3 and 7 on the L293D change the direction of the motor.
+
+         <div align=center>
+
+         ![](./figures/step3-2.png)
+
+         </div>
+
+      - Lines 34 and 46 code, `delay(1000)`,allowing the motor to turn in that direction for 1 second.
+
+      - Lines 36, 37 & 48, 49 both set the `movedLeft` and `movedRight` variables true or false.
+
+      ~~~
+
+      ~~~admonish todo
+
+      - Add inline comments on lines 33 - 35 & 44 - 47 for what each variable is for, using the // comment symbols
+
+      ~~~
+
+4. Now it is time to return to lines 29 & 41, both sets of lines do the same things so look below at the code for `motorInstructions();`, add to end of the script after the closing `}` of the `void loop()`.
+
+      ~~~admonish code
+
+      ```C++
+      void motorInstructions()
+      {
+      rads = 53.0 * (2*3.1415926/60.0);
+      degrees = rads * 57.2958;
+      analogWrite(en, pwmOutput);
+      }
+      ```
+
+      ~~~
+
+      ~~~admonish example title="Explanation"
+   
+      - Let's first look at line 55's code, `rads = 53.0 * (2*3.1415926/60.0);`, calculates the radians per second using **equation 3**. Where \\(\pi\\) is shown to 7 decimal places. The `53.0` the average speed the DC motor in response to the resistors value of \\(1k\Omega\\).
+
+      - Line 56's code, `degrees = rads * 57.2958;`, which is taken from **equation 4**, to calculate the degrees per second. 
+
+      - Line 57's code, `analogWrite(en, pwmOutput);`, outputs the PWM signal,`pwmOutput` value of 12 to the `en` pin, to the **Enable 1 & 2** pin of the L293D. The value of `en`, 12, again is preset because of the resistors value of \\(1k\Omega\\).
+      
+      ~~~
+
+5. So lastly, lets look at the function `debugger();` called on lines 30 and 42 of the `void loop()` function. 
+
+
+      ~~~admonish code
+
+      ```C++
+      void debugger()
+      {
+      Serial.print("Temperature: ");
+      Serial.print(temperature);
+      Serial.print("  | RAD/s: ");
+      Serial.print(rads);
+      Serial.print("   | Degree/s: ");
+      Serial.println(degrees);
+      }
+      ```
+
+      ~~~
+
+      ~~~admonish example title="Explanation"
+      
+      - So we can see that lines 62 to 67 output information about the variables to the serial montior.
+
+      ~~~
+
+## 5. Extensions     
+
+1. Now you have a better understanding of the circuit and the code ...
+
+      ~~~admonish todo
+
+      - What happens to the motor when the resistance value is changed? Adjust line 55's rpm value to match the motors rpm value. 
+
+      - With the knowledge that each line of code takes *some* time to execute, specifically mathematical functions. Would pre calculating all of the constants in an equation speed up the programme? Try it.
+
+      -  Explore the code, make changes to experiment with different temperature values, timings, conditional statements (if, else if).
+
+      ~~~
+
+## 6 Full code
+
+
+~~~admonish code title="Code: Full code is seen below" collapsible=true
 
 ```C++
 #define en 10
@@ -214,54 +566,6 @@ Now you are ready to set up all the Sketch up as follows.
 #define in2 8
 #define temp A0
 
-void setup()
-{
-
-}
-
-void loop()
-{
-
-}
-```
-
-Firstly the variables are declared and initialised using the `#define` keyword.
-
-Lines 1 to 3, define the variables `en 10`, `in1 9` and `in2 8` will reference the physical connections of the L293D Enable 1 & 2, **Input 1** and **Input 2** respectively.
-
-Line 4, define the variable `temp A0` will reference the physical connection of the TMP36 `Vout` pin.
-
-> TODO: 
-> 
-> Add inline comments on lines 1 - 4 for what each variable is for, using the // comment symbols
-
-Secondly, the dynamic variables are declared and initialised using data types `int`, `float` and `bool`.
-
-```C++
-int pwmOutput = 12;
-float tempValue;
-float temperature;
-float rads = 0.0;
-float degrees = 0.0;
-bool movedRight = false;
-bool movedLeft = false;
-```
-Line 6, `int pwmOutput = 12;`, will stores the value that will be used in the `analogWrite()` function.
-
-Lines 7 and 8, variables `float tempValue; float temperature;` will store the `analogRead()` value and the converted temperature value respectively. 
-
-Lines 9 and 10, variables `float rads =0.0;` and `float degrees = 0.0;` will store the calculated values for radians per second and degrees per second respectively.
-
-Lines 11 and 12, variables `bool movedRight = false;` and `bool movedLeft = false;` are used to stop the motor turning continuously.
-
-Script should now look like the below:
-
-```C++
-#define en 10
-#define in1 9
-#define in2 8
-#define temp A0
-
 int pwmOutput = 12;
 float tempValue;
 float temperature;
@@ -270,24 +574,6 @@ float degrees = 0.0;
 bool movedRight = false;
 bool movedLeft = false;
 
-void setup()
-{
-
-}
-
-void loop()
-{
-
-}
-```
-
-> TODO: 
-> 
-> Add inline comments on lines 6 - 12 for what each variable is for, using the // comment symbols
-
-The `void setup()` will be used to set the pin modes and initialise the serial.
-
-```C++
 void setup()
 {
   Serial.begin(9600);
@@ -295,48 +581,8 @@ void setup()
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
 }
-```
-
-Line 16's code, `Serial.begin(9600);`, sets the Serial speed at 9600 bits per second (bps)
-
-Line 17's code, `pinMode(en, OUTPUT);`, sets pin 10 on the Arduino Uno as an output so that a signal can be sent to the **Enable 1 & 2** pin of the L293D chip.
-
-Line 18's and 19's code, `pinMode(in1, OUTPUT);` `pinMode(in2, OUTPUT)`, sets pin 9 and 8 on the Arduino Uno as an output so that a signal can be sent to the **Input 1 & 2** pin of the L293D chip respectively.
-
-```C++
-#define en 10
-#define in1 9
-#define in2 8
-#define temp A0
-
-int pwmOutput = 12;
-float tempValue;
-float temperature;
-float rads = 0.0;
-float degrees = 0.0;
-bool movedRight = false;
-bool movedLeft = false;
-
-void setup()
-{
-  Serial.begin(9600);
-  pinMode(en, OUTPUT);
-  pinMode(in1, OUTPUT);
-  pinMode(in2, OUTPUT);
-}
 
 void loop()
-{
-
-}
-```
-
-> TODO: 
-> 
-> Add inline comments on lines 16 - 19 for what each variable is for, using the // comment symbols
-
-```C++
- void loop()
 {
   tempValue = analogRead(temp);
   temperature = ((tempValue*(5.0/1024.0))-0.5)/0.01;
@@ -345,7 +591,6 @@ void loop()
   {
     motorInstructions();
     debugger();
-
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);
     delay(1000);
@@ -357,143 +602,6 @@ void loop()
   {
     motorInstructions();
     debugger();
-
-    digitalWrite(in1, HIGH);
-    digitalWrite(in2, LOW);
-    delay(1000);
-    digitalWrite(in1, LOW);
-    movedLeft = true;
-    movedRight = false;
-  }
-}
-```
-
-Starting with line 24, the code `tempValue = analogRead(temp);` will read the TMP36 wired to pin A0 of the Arduino, and convert voltage to the Analogue Digital Converted value. Remember the that voltage rang is 0V to 5V and the ADC of the Arduino is 10-bits, so its range is 0 - 1023.
-
-Line 25's code, `temperature = ((tempValue*(5.0/1024.0))-0.5)/0.01;}`, converts the the `temp` value, (0 - 358) to Celsius with a range of \\(-40^{\circ}C\\) to \\(125^{\circ}C\\), see **equation 6**.
-
- 
- <p>
-   <span class="math display">
-      \[
-         \begin{aligned}
-            temperature = \cfrac{\left(\left(tempValue \cdot \left( \cfrac{5.0V}{1024}\right)\right)-0.5\right)}{0.01}\\ 
-            \Rightarrow 26.17^{\circ}C = \cfrac{\left(\left(156 \cdot \left( \cfrac{5.0V}{1024}\right)\right)-0.5\right)}{0.01} 
-         \end{aligned}\tag{Eqn:6}
-      \]
-   </span>
-</p>
-
-
-
-> TODO: 
-> 
-> Add inline comments on lines 24 - 25 for what each variable is for, using the // comment symbols
-
-Now that the `temperature` value has been calculated, lines 27 and 39 can be explained.
-
-Line 27's code, `if( temperature <= 30.0 && movedRight == false)`, checks to see if the `temperature` is less than or equal to, `<=`, 30.0. If this condition is `true` then the second part of the conditional statement can be checked, using `&&`. the boolean (true or false) variable `movedRight == false` is compared for equality `==`, remember a single `=` means assign the right hand side to the left hand side. Now if both conditions are true then the code between lines 29 and 37 will be executed. If either statement is false, then then line 39 is executed. 
-
-Line 39's code is much the same as line 27's, but the `temperature` has to be greater or equal to, `>=`, 40.0 and `movedLeft` must be false. If both statements are true then lines 41 to 49 are executed, if not then the programme loops back to the line 24, and the process starts again. 
-
-Now we can look inside lines 29 to 30 & lines 40 to 49, you probably can see that there are only a few differences between the two blocks of code. We will look at lines 29, 30, 41 and 42 later. 
-
-Lets look at lines 32, 33 and 44 and 45, where the two sets of lines are polar opposites of each other. The `digitalWrite(in1, LOW);` `digitalWrite(in1, HIGH);` & `digitalWrite(in2, LOW);` `digitalWrite(in2, HIGH);`  changes the direction the motor spins. 
-
-Looking at the block diagram of the L293D, we can see that Input 1, and Input 2, both pin 3 and 7 on the L293D change the direction of the motor.
-
-Lines 34 and 46 code, `delay(1000)`,allowing the motor to turn in that direction for 1 second.
-
-> TODO: 
-> 
-> Add inline comments on lines 33 - 35 & 44 - 47 for what each variable is for, using the // comment symbols
-
-Lines 36, 37 & 48, 49 both set the `movedLeft` and `movedRight` variables true or false.
-
-Now it is time to return to lines 29 & 41, both sets of lines do the same things so look below at the code for `motorInstructions();`, add to end of the script after the closing `}` of the `void loop()`.
-
-```C++
-void motorInstructions()
-{
-  rads = 53.0 * (2*3.1415926/60.0);
-  degrees = rads * 57.2958;
-  analogWrite(en, pwmOutput);
-}
-```
-
-Let's first look at line 55's code, `rads = 53.0 * (2*3.1415926/60.0);`, calculates the radians per second using **equation 3**. Where \\(\pi\\) is shown to 7 decimal places. The `53.0` the average speed the DC motor in response to the resistors value of \\(1k\Omega\\).
-
-Line 56's code, `degrees = rads * 57.2958;`, which is taken from **equation 4**, to calculate the degrees per second. 
-
-Line 57's code, `analogWrite(en, pwmOutput);`, outputs the PWM signal,`pwmOutput` value of 12 to the `en` pin, to the **Enable 1 & 2** pin of the L293D. The value of `en`, 12, again is preset because of the resistors value of \\(1k\Omega\\).
-
-So lastly, lets look at the function `debugger();` called on lines 30 and 42 of the `void loop()` function. 
-
-```C++
-void debugger()
-{
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.print("  | RAD/s: ");
-  Serial.print(rads);
-  Serial.print("   | Degree/s: ");
-  Serial.println(degrees);
-}
-```
-So we can see that lines 62 to 67 output information about the variables to the serial montior.
-
-Now you have a better understanding of the circuit and the code ...
-
-> TODO: 
-> 
-> - What happens to the motor when the resistance value is changed? Adjust line 55's rpm value to match the motors rpm value. 
-> - With the knowledge that each line of code takes *some* time to execute, specifically mathematical functions. Would pre calculating all of the constants in an equation speed up the programme? Try it.
-> -  Explore the code, make changes to experiment with different temperature values, timings, conditional statements (if, else if).
-
-Full code is seen below:
-
-```C++
-#define en 10
-#define in1 9
-#define in2 8
-#define temp A0
-
-int pwmOutput = 12;
-float tempValue;
-float temperature;
-float rads = 0.0;
-float degrees = 0.0;
-bool movedRight = false;
-bool movedLeft = false;
-
-void setup()
-{
-  Serial.begin(9600);
-  pinMode(en, OUTPUT);
-  pinMode(in1, OUTPUT);
-  pinMode(in2, OUTPUT);
-}
-
-void loop()
-{
-  tempValue = analogRead(temp);
-  temperature = ((tempValue*(5.0/1024.0))-0.5)/0.01;
-
-  if( temperature <= 30.0 && movedRight == false)
-  {
-    motorInstructions();
-    debugger();
-    digitalWrite(in1, LOW);
-    digitalWrite(in2, HIGH);
-    delay(1000);
-    digitalWrite(in2, LOW);
-    movedRight = true;
-    movedLeft = false;
-  }
-  else if ( temperature >= 40.0 && movedLeft == false)
-  {
-    motorInstructions();
-    debugger();
     digitalWrite(in1, HIGH);
     digitalWrite(in2, LOW);
     delay(1000);
@@ -520,3 +628,17 @@ void debugger()
   Serial.println(degrees);
 }
 ```
+~~~
+
+
+## 7. Full circuit
+
+~~~admonish tip
+
+- If you have struggled to get there.... here is full project you can tinker with:
+
+  - [https://www.tinkercad.com/things/500whC8fFRJ-directioncontroldcmotortmp36?sharecode=fBubymPvRSDC1KoBmx_MPGvHT6z46C5EhW0etZqKRTc](https://www.tinkercad.com/things/500whC8fFRJ-directioncontroldcmotortmp36?sharecode=fBubymPvRSDC1KoBmx_MPGvHT6z46C5EhW0etZqKRTc)
+
+
+~~~
+
