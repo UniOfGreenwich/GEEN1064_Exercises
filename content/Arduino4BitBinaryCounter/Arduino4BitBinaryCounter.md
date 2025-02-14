@@ -441,6 +441,7 @@ int four;
 
 void setup()
 {
+  Serial.begin(9600);
   pinMode(positionOne, OUTPUT);
   pinMode(positionTwo, OUTPUT);
   pinMode(positionThree, OUTPUT);
@@ -461,33 +462,106 @@ void loop()
 
   if((one == false && two == false) && (three == false && four == false))
   {
-    digitalWrite(positionOne, LOW);
-    digitalWrite(positionTwo, LOW);
-    digitalWrite(positionThree, LOW);
-    digitalWrite(positionFour, LOW);
+    binaryLed(0,0,0,0);
   }
 
   else if((one == true && two == false) && (three == false && four == false))
   {
-    digitalWrite(positionOne, HIGH);
-    digitalWrite(positionTwo, LOW);
-    digitalWrite(positionThree, LOW);
-    digitalWrite(positionFour, LOW);
+    binaryLed(1,0,0,0);
   }
   else if(one == false && two == true && three == false && four == false)
   {
-    digitalWrite(positionOne, LOW);
-    digitalWrite(positionTwo, HIGH);
-    digitalWrite(positionThree, LOW);
-    digitalWrite(positionFour, LOW);
+   binaryLed(0,1,0,0);
   }
   else if(one == true && two == true && three == false && four == false)
   {
-    digitalWrite(positionOne, HIGH);
-    digitalWrite(positionTwo, HIGH);
-    digitalWrite(positionThree, LOW);
-    digitalWrite(positionFour, LOW);
+    binaryLed(1,1,0,0);
   }
+  else if(one == false && two == false && three == true && four == false)
+  {
+    binaryLed(0,0,1,0);
+  }
+  else if(one == true && two == false && three == true && four == false)
+  {
+    binaryLed(1,0,1,0);
+  }
+  else if(one == false && two == true && three == true && four == false)
+  {
+    binaryLed(0,1,1,0);
+  }
+  else if(one == true && two == true && three == true && four == false)
+  {
+    binaryLed(1,1,1,0);
+  }
+  else if(one == false && two == false && three == false && four == true)
+  {
+    binaryLed(0,0,0,1);
+  }
+   else if(one == true && two == false && three == false && four == true)
+  {
+    binaryLed(1,0,0,1);
+  }
+  else if(one == false && two == true && three == false && four == true)
+  {
+    binaryLed(0,1,0,1);
+  }
+  else if(one == true && two == true && three == false && four == true)
+  {
+    binaryLed(1,1,0,1);
+  }
+  else if(one == false && two == false && three == true && four == true)
+  {
+    binaryLed(0,0,0,1);
+  }
+  else if(one == true && two == false && three == true && four == true)
+  {
+    binaryLed(1,0,1,1);
+  }
+  else if(one == false && two == true && three == true && four == true)
+  {
+    binaryLed(0,1,1,1);
+  }
+  else if(one == true && two == true && three == true && four == true)
+  {
+    binaryLed(1,1,1,1);
+  }
+}
+
+void binaryLed(int one, int two, int four, int eight)
+{
+	digitalWrite(positionOne, one);
+    digitalWrite(positionTwo, two);
+    digitalWrite(positionThree, four);
+    digitalWrite(positionFour, eight);
+    message(one, two, four, eight);
+}
+
+void message(int one,int two, int four, int eight)
+{
+  /*
+    We are taking the ints and turning them into an array of chars
+    note that +'0' only works when 0 <= a <= 9.
+  */
+  char binary[5] ={eight+'0',four+'0',two+'0',one+'0','\0'};
+ 
+  /*
+    We are going to take each position, power function pow(base,exponent)
+    and multiply by the state of the button. So eight x 2^3, 
+    if eight is 1 then number = 8
+    You may also see that (int)pow(x,y) basically 'casts' the output of pow
+    which is type double to type int.
+  */
+  int number = eight*(int)pow(2,3)+four*(int)pow(2,2)+two*(int)pow(2,1)+one*(int)pow(2,0);
+   
+  /* 
+   we pass the char array into the String() 
+   and it will return a String
+  */
+  Serial.print("number: ");
+  Serial.print(number);
+  Serial.print("  | binary: ");
+  Serial.print(String(binary));
+  Serial.println();
 }
 ```
 
